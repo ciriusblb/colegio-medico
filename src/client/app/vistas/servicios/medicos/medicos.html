@@ -1,0 +1,104 @@
+<div class="col-md-12">
+    <div class="col-md-6" style="background: #e2e2e2;">
+        <div class="row">
+        <rt-widget-header title="Médicos"></rt-widget-header> 
+          <div class="col-md-12">
+            <div class="col-md-12" style="border-bottom: 2px solid #637c8a">
+                <div class="input-group">
+                  <input type="text" class="form-control" ng-keyUp="vm.filtroOf(vm.word)" ng-model="vm.word">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li ng-click="vm.filtroOf('')"><a href="">Todos</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li ng-repeat="a in vm.especialidades" ng-click="vm.filtroOf(a.especialidad)"><a href="">{{a.especialidad}}</a></li>
+                    </ul>
+                  </div> 
+                </div>
+                <br>
+            </div>
+              <div class="col-md-12 tableBody"  style="height: 550px; overflow: auto;">
+                    <table class="table table-bordered">
+                        <thead>
+                            <th>Nro.</th>
+                            <th>CMP</th>
+                            <th>Apellidos y Nombres</th>
+                            <th>Especialidad</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="a in vm.items|slice:vm.pager.startIndex:vm.pager.endIndex" ng-click="vm.ver(a.id)" ng-class="{'tr-selected':vm.idSelected==a.id}">
+                                <td>{{vm.pager.startIndex + $index+1}}</td>
+                                <td>{{a.cmp}}</td>
+                                <td>{{a.ap_paterno}} {{a.ap_materno}} {{a.nombre}}</td>
+                                <td>{{a.especialidad}}</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+              </div>
+          </div>
+        </div>    
+    </div>
+    <div class="col-md-6" >
+        <div class="row box-shadow ">
+            <rt-widget-header title="Formulario"></rt-widget-header>
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <rt-form-button 
+                    buttons="vm.buttons"
+                    updates="vm.updates"
+                    new-button="vm.nuevo()" 
+                    edit-button="vm.editar()" 
+                    delete-button="vm.eliminar()" >
+                </rt-form-button>
+                </div> 
+            </div>
+            <form class="col-md-12" name="formulario" style="height: 550px; margin-bottom: 7px">
+                <br>
+                <div class="col-md-6">
+                    <div class="">
+                        <label class="w3-text-blue" for="nombre"><b>Nombre(s)</b></label>
+                        <input type="text" class="w3-input w3-border" name="nombre" lyrics-only capitalize-letter ng-model="vm.newMedico.nombre" ng-disabled="vm.updates.disabled" required>
+                        <label class="w3-text-blue" for="last_name"><b>Apellido Paterno</b></label>
+                        <input type="text" class="w3-input w3-border" name="apellido_paterno" lyrics-only capitalize-letter ng-model="vm.newMedico.ap_paterno" ng-disabled="vm.updates.disabled" required>
+                        <label class="w3-text-blue" for="last_name"><b>Apellido Materno</b></label>
+                        <input type="text" class="w3-input w3-border" name="apellido_materno" lyrics-only capitalize-letter ng-model="vm.newMedico.ap_materno" ng-disabled="vm.updates.disabled" required>
+                        <label class="w3-text-blue" for="last_name"><b>Email</b></label>
+                        <input type="email" class="w3-input w3-border" name="email" ng-model="vm.newMedico.email" ng-disabled="vm.updates.disabled" required>
+                        <label  class="w3-text-blue"><b>CMP</b></label>
+                        <input type="text" class="w3-input w3-border" name="cmp" numbers-only ng-model="vm.newMedico.cmp" ng-disabled="vm.updates.disabled" required>
+                        <label class="w3-text-blue">Especialidad</label>
+                        <select class="w3-select w3-border" name="especialidad" ng-model="vm.newMedico.especialidad" ng-disabled="vm.updates.disabled" required>
+                            <option>Odontologia</option>
+                            <option>traumatologia</option>
+                            <option>Urologia</option>
+                            <option>ginecologia</option>
+                            <option>luxacion</option>
+                            <option>diagnostico</option>
+                            <option>traumatologia</option>
+                            <option>Epidemiología</option>
+                            <option>Fisiología</option>
+                            <option>Gastroenterología</option>
+                        </select>                            
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="">
+                        <br>
+                        <br>
+                        <fieldset ng-disabled="vm.updates.disabled">
+                            <rt-image-file publicacion="vm.newMedico" state="vm.state" alto="height300px" carpeta="'MEDICO'"></rt-image-file>
+                        </fieldset>                            
+                    </div>
+
+                </div>
+                <div class=" col-md-12 panel-body">
+                    <center>
+                        <button type="sumbmit" ng-click="vm.registrar(formulario.$valid)"  class="blue-bottom button-4"><i class="fa fa-check" aria-hidden="true"></i><span >Guardar</span></button> 
+                        <a ng-click="vm.cancelar(vm.newMedico)" class="blue-bottom button-4"><i class="fa fa-times" aria-hidden="true"></i>Cancelar</a>
+                    </center>  
+                </div>
+            </form>
+        </div> 
+    </div>    
+</div>
+

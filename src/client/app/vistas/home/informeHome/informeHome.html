@@ -1,0 +1,39 @@
+<div class="col-md-6" >
+  <div class="row box-shadow">
+    <rt-widget-header title="Descripcion"></rt-widget-header>
+      <div class="col-md-12">
+        <div class="col-md-12">
+          <rt-form-button 
+            buttons="vm.buttons"
+            updates="vm.updates"
+            new-button="vm.nuevo()" 
+            edit-button="vm.editar()" 
+            delete-button="vm.eliminar()">
+          </rt-form-button>
+        </div> 
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-4" style="">
+          <fieldset ng-disabled="vm.updates.disabled">
+            <rt-image-file publicacion="vm.publicacion" state="vm.state" alto="height200px" archivo="vm.archivo" tabla="'h_informe'" carpeta="'INFORME'"></rt-image-file>
+          </fieldset>
+        </div>
+        <div class="col-md-8 configBody" style="height: 480px; overflow: auto;">
+          <form class="formulario" name="formulario">
+            <fieldset ng-disabled="vm.updates.disabled">
+              <rt-form-file dato="vm.publicacion"></rt-form-file>
+            </fieldset>
+          </form>
+        </div>         
+      </div>
+   
+    <div class="col-md-12">
+      <div class="panel-body">
+        <center>
+            <button type="submit" ng-click="vm.guardar(formulario.$valid)" class="blue-bottom button-4"><i class="fa fa-check" aria-hidden="true"></i><span >Guardar</span></button> 
+            <a ng-click="vm.cancelar(vm.publicacion)" class="blue-bottom button-4"><i class="fa fa-times" aria-hidden="true"></i>Cancelar</a>
+        </center>  
+      </div>  
+    </div>
+  </div>
+</div>

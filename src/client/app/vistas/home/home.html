@@ -1,0 +1,732 @@
+<section class="section-01" ng-if="!vm.config">
+  <div class="container">
+    <div class="col-lg-12 doc-item">
+      <div class="common-doctor">
+        <slick ng-if="vm.datos[0].datos.length>0" ng-if="vm.slickConfig" class="slider single-item" focus-on-select="true" current-index="index" settings="slickConfig1">
+          <div ng-repeat="a in vm.datos[0].datos" class="col-lg-12">
+            <img ng-if="!a.blob" src="galeria/slide/{{a.imagen}}" class="img-fluid view" alt="photo" width="100%" style="height: 500px">
+            <img ng-if="a.blob" src="{{a.blob}}" class="img-fluid view" alt="photo" width="100%" style="height: 500px">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>{{a.titulo}}</h3>
+              <p>{{a.descripcion}}</p>
+            </div> 
+          </div>
+        </slick>
+        <slick ng-if="vm.datos[0].datos.length==0" class="slider single-item" focus-on-select="true" current-index="index" settings="slickConfig1">
+          <div ng-repeat="a in [1,2,3]" class="col-lg-12">
+            <img src="content/home/1200x400.png" class="img-fluid view" alt="photo" width="100%" style="height: 500px">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Title {{a}}</h3>
+              <p>Description {{a}}</p>
+            </div> 
+          </div>
+        </slick>
+        <ul class="list-inline social-lists animating">
+            <li>
+              <a ng-click="vm.goSubView('Vistas_Home.Vistas_Home_Slide')">
+                <i class="fa fa-cog"></i>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <h3 class="heading-large">Noticias</h3>
+    </div>
+    <div class="col-lg-12 doc-item">
+      <div class="common-doctor">
+        <slick ng-if="vm.datos[1].datos.length>0" ng-if="vm.slickConfig" class="slider single-item" focus-on-select="true" current-index="index" settings="slickConfig2">
+          <div ng-repeat="a in vm.datos[1].datos" class="col-lg-12">
+            <div class="cards">
+              <div class="view hm-white-slight">
+                  <img ng-if="!a.blob" src="galeria/noticia/{{a.imagen}}" class="img-fluid" alt="photo" width="100%" style="height: 250px">
+                  <img ng-if="a.blob" src="{{a.blob}}" class="img-fluid" alt="photo" width="100%" style="height: 250px">
+
+              </div>
+              <div class="card-body col-lg-12">
+                  <h4 class="card-title">{{a.titulo}} </h4>
+                  <p class="card-text">{{a.descripcion.substring(0,200)+"..."}}</p>
+                  <a ui-sref="last_news({id:'{{a.id}}'})" class="btn kyoka button-4 buttonshadow">Leer mas</a>
+              </div>
+            </div>
+          </div>
+        </slick>
+        <slick ng-if="vm.datos[1].datos.length==0" class="slider single-item" focus-on-select="true" current-index="index" settings="slickConfig2">
+          <div ng-repeat="a in [1,2,3,4,5,6]" class="col-lg-12">
+            <div class="cards">
+              <div class="view hm-white-slight">
+                  <img src="content/home/450x250.png" class="img-fluid" alt="photo" width="100%" style="height: 250px">
+              </div>
+              <div class="card-body col-lg-12">
+                  <h4 class="card-title">Title {{a}}</h4>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat...</p>
+                  <a class="btn kyoka button-4 buttonshadow">Leer mas</a>
+              </div>
+            </div>
+          </div>
+        </slick>
+        <ul class="list-inline social-lists animating">
+            <li>
+              <a ng-click="vm.goSubView('Vistas_Home.Vistas_Home_Noticias')">
+                <i class="fa fa-cog"></i>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </div>        
+  </div>
+  <br>
+  <br>
+  <div class="container">
+    <div class="col-md-12">
+      <div class="container dentro">
+        <div class="row">
+          <div class="col-lg-8 col-md-12">
+            <h3 class="heading-large">Noticias</h3>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <h3 class="heading-large">Palabras del Decano</h3>
+          </div>
+          <div class="border-primary mb-4 text-center col-lg-8 cards doc-item">
+            <div class="common-doctor">
+              <div class="card-body" style="margin-bottom: 30px;">
+                <div ng-if="vm.datos[2].datos.length>0" class="row" ng-repeat="a in vm.datos[2].datos|slice:0:5">
+                  <div class="col-md-12">
+                    <h5 class="card-title" style="margin-top: 25px;"><strong>{{a.titulo}}</strong></h5>
+                  </div> 
+                  <div class="col-md-4 offset-md-1 mx-3 my-3">
+                    <div class="view hm-white-slight">
+                      <img ng-if="a.blob" src="{{a.blob}}" width="100%">
+                      <img ng-if="!a.blob" src="galeria/publicacion/{{a.imagen}}" width="100%">
+                    </div>
+                  </div>
+                  <div class="col-md-7 text-left ml-3 mt-3 card-text">
+                    <article>{{a.descripcion.substring(0,150)+"..."}}</article>
+                    <br>
+                    <p class="pull-left">by <a><strong> {{a.fuente}}</strong></a></p>
+                    <p class="pull-right">{{a.fecha | date:"MMMM,d,y"}}</p>
+                    <button class="btn kyoka button-4 buttonshadow"><i class="fa fa-magic mr-1"></i> Ver mas</button>
+                    <hr>
+                  </div>
+                </div>
+                <div ng-if="vm.datos[2].datos.length==0" class="row" ng-repeat="a in [1,2,3,4,5]">
+                  <div class="col-md-12">
+                    <h5 class="card-title" style="margin-top: 25px;"><strong>Title {{a}}</strong></h5>
+                  </div> 
+                  <div class="col-md-4 offset-md-1 mx-3 my-3">
+                    <div class="view hm-white-slight">
+                      <img src="content/home/350x260.png" width="100%">
+                    </div>
+                  </div>
+                  <div class="col-md-7 text-left ml-3 mt-3 card-text">
+                    <article>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat...</article>
+                    <br>
+                    <p class="pull-left">by <a><strong> fuente {{a}}</strong></a></p>
+                    <p class="pull-right">February,19,2018</p>
+                    <button class="btn kyoka button-4 buttonshadow"><i class="fa fa-magic mr-1"></i> Ver mas</button>
+                    <hr>
+                  </div>
+                </div>      
+              </div> 
+              <button id="kyoka" type="button" class="btn button-4-border buttonshadow waves-effect">Ver mas Noticias
+                <i class="fa fa-magic ml-1"></i>
+              </button>
+                <ul class="list-inline social-lists animating">
+                  <li>
+                    <a ng-click="vm.goSubView('Vistas_Home.Vistas_Home_Publicaciones')">
+                      <i class="fa fa-cog"></i>
+                    </a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+          <aside class="col-lg-4 side-bar col-md-12">
+            <div class="cards col-md-12 doc-item">
+              <div class="common-doctor">
+
+                <div ng-if="vm.datos[3].datos.length>0" class="text-center">
+                  <h4 class="card-title font-bold pb-2" style="margin-top: 25px;"><strong>{{vm.datos[3].datos[0].decano}}</strong></h4>
+                  <div class="view hm-white-slight my-4">
+                    <img ng-if="vm.datos[3].datos[0].blob" src="{{vm.datos[3].datos[0].blob}}" class="img-fluid" width="100%" alt="">
+                    <img ng-if="!vm.datos[3].datos[0].blob" src="galeria/personaje/{{vm.datos[3].datos[0].imagen}}" class="img-fluid" width="100%" alt="">
+                  </div>
+                  <h5 class="font-bold">{{vm.datos[3].datos[0].titulo}}</h5>
+                  <p class="card-text">
+                    {{vm.datos[3].datos[0].descripcion.substring(0,300)+"..."}}
+                  </p>
+                  <div class="card-text" style="margin-bottom: 10px">
+                    <a class="mr-3 li-ic"><i class="fa fa-linkedin grey-text"> </i></a>
+                    <a class="mr-3 tw-ic"><i class="fa fa-twitter grey-text"> </i></a>
+                    <a class="fb-ic"><i class="fa fa-facebook grey-text"> </i></a>
+                  </div>
+                </div>
+
+                <div ng-if="vm.datos[3].datos.length==0" ng-repeat="a in [1]" class="text-center">
+                  <h4 class="card-title font-bold pb-2" style="margin-top: 25px;"><strong>title {{a}}</strong></h4>
+                  <div class="view hm-white-slight my-4">
+                    <img src="content/home/300x300.png" class="img-fluid" alt="" width="100%">
+                  </div>
+                  <h7 class="indigo-text font-bold mb-4 card-text">Lorem ipsum dolor sit amet</h7>
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat...
+                  </p>
+                  <div class="card-text" style="margin-bottom: 10px">
+                    <a class="mr-3 li-ic"><i class="fa fa-linkedin grey-text"> </i></a>
+                    <a class="mr-3 tw-ic"><i class="fa fa-twitter grey-text"> </i></a>
+                    <a class="fb-ic"><i class="fa fa-facebook grey-text"> </i></a>
+                  </div>
+                </div>  
+                <ul class="list-inline social-lists animating">
+                  <li>
+                    <a ng-click="vm.goSubView('Vistas_Home.Vistas_Home_Personajes')">
+                      <i class="fa fa-cog"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="cards col-md-12" style="margin-top: 50px;">
+              <ul class="nav nav-tabs card-text" role="tablist" id="myTab">
+                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href=".convocatorias" role="tab">Convocatorias</a> </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href=".portales" role="tab">Portal</a> </li>
+              </ul>
+
+              <div class="tab-content sidebar-tabing" id="nav-tabContent" >
+                <div class="tab-pane active convocatorias" role="tabpanel">
+                  <div class="widget-sidebar">
+                    <div class="col-lg-12 doc-item">
+                      <div class="common-doctor">
+                        <div ng-if="vm.datos[4].datos.length>0" class="last-post" style="margin-top:20px;margin-bottom: 20px;"  ng-repeat="a in vm.datos[4].datos">
+                          <button class="accordion fa fa-calendar"> {{a.fecha|date:"MMMM,d,y"}}</button>
+                           <div class="panels" >
+                             <li class="recent-post card-title" style="margin-top: 20px;">
+                                <div class="post-img">
+                                  <img ng-if="!a.blob" src="galeria/informe/{{a.imagen}}" class="img-responsive">
+                                  <img ng-if="a.blob" src="{{a.blob}}" class="img-responsive">
+
+                                </div>
+                                <a>
+                                  <h5 class="">{{a.titulo}} </h5>
+                                  <p><small><i class="fa fa-calendar" data-original-title="" title=""></i>{{a.fecha|date:"MMMM,d,y"}}</small></p>                       
+                                </a> 
+                              </li>
+                              <p class="card-text">{{a.descripcion.substring(0,100)+"..."}} </p>
+                              <script>         
+                              var acc = document.getElementsByClassName("accordion");
+                              var i;
+                              for (i = 0; i < acc.length; i++) {
+                                acc[i].onclick = function() {
+                                  this.classList.toggle("active");
+                                  var panel = this.nextElementSibling;
+                                  if (panel.style.maxHeight){
+                                    panel.style.maxHeight = null;
+                                  } else {
+                                    panel.style.maxHeight = panel.scrollHeight + "px";
+                                  } 
+                                }
+                              }
+                              </script>
+                         </div>
+                        </div>
+                        <div ng-if="vm.datos[4].datos.length==0" class="last-post" style="margin-top:20px;margin-bottom: 20px;"  ng-repeat="a in [1,2,3]">
+                          <button class="accordion fa fa-calendar"> February,19,2018</button>
+                           <div class="panels" >
+                             <li class="recent-post card-title" style="margin-top: 20px;">
+                                <div class="post-img">
+                                  <img src="content/home/200x200.png" class="img-responsive">
+                                </div>
+                                <a ui-sref="informes({id:'{{a.id}}'})">
+                                  <h5 class="">Title {{a}} </h5>
+                                  <p><small><i class="fa fa-calendar" data-original-title="" title=""></i>February,19,2018</small></p>                       
+                                </a> 
+                              </li>
+                              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                              <script>         
+                              var acc = document.getElementsByClassName("accordion");
+                              var i;
+                              for (i = 0; i < acc.length; i++) {
+                                acc[i].onclick = function() {
+                                  this.classList.toggle("active");
+                                  var panel = this.nextElementSibling;
+                                  if (panel.style.maxHeight){
+                                    panel.style.maxHeight = null;
+                                  } else {
+                                    panel.style.maxHeight = panel.scrollHeight + "px";
+                                  } 
+                                }
+                              }
+                              </script>
+                         </div>
+                        </div>
+                        <ul class="list-inline social-lists animating">
+                          <li>
+                            <a ng-click="vm.goSubView('Vistas_Home.Vistas_Home_Informe')">
+                              <i class="fa fa-cog"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                 </div>
+                </div>
+
+                <div class="tab-pane portales"  role="tabpanel"> 
+                  <div class="col-lg-12 doc-item">
+                    <div class="common-doctor">      
+                      <div  ng-if="vm.datos[5].datos.length>0" class="widget-sidebarwidget-sidebar" ng-repeat="a in vm.datos[5].datos">
+                         <li class="recent-post" style="margin-bottom: 10px;">
+                          <div class="post-img">
+                           <img ng-if="!a.blob" src="galeria/portal/{{a.imagen}}" class="img-responsive">
+                           <img ng-if="a.blob" src="{{a.blob}}" class="img-responsive">
+                           </div>
+                           <a href=""><h6 style="font-weight: bold;margin-top: 10px;">{{a.descripcion}} ajsdn.</h6></a>
+                           <p class="card-text"><small><i class="fa fa-calendar" data-original-title="" title=""></i> 30 Juni 2014</small></p>
+                          </li>                       
+                        <hr style="margin-top: 30px;">
+                      </div>
+                      <div ng-if="vm.datos[5].datos.length==0" class="widget-sidebarwidget-sidebar" ng-repeat="a in [1,2,3]">
+                         <li class="recent-post" style="margin-bottom: 10px;">
+                          <div class="post-img">
+                           <img src="content/home/150x150.png" class="img-responsive">
+                           </div>
+                           <a href=""><h6 style="font-weight: bold;margin-top: 10px;">Descripcion {{a}}</h6></a>
+                           <p class="card-text"><small><i class="fa fa-calendar" data-original-title="" title=""></i> 30 Juni 2014</small></p>
+                          </li>                       
+                        <hr style="margin-top: 30px;">
+                      </div>
+                        <ul class="list-inline social-lists animating">
+                          <li>
+                            <a ng-click="vm.goSubView('Vistas_Home.Vistas_Home_Portal')">
+                              <i class="fa fa-cog"></i>
+                            </a>
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>         
+            </div>
+
+            <div class="video-sec col-md-12 cards">
+              <h4 class="heading-small">Featured Video</h4>
+              <div class="col-md-12 doc-item">
+                <div class="common-doctor">
+                  <div ng-if="vm.datos[6].datos.length>0" class="video-block">
+                    <div class="embed-responsive embed-responsive-4by3">
+                      <ng-youtube-embed 
+                          video="vm.datos[6].datos[0].video" 
+                          autoplay="false"
+                          color="white"
+                          disablekb="true"
+                          end="20">
+                      </ng-youtube-embed>
+                    </div>
+                    <h4 class="card-title" style="height: 100px">{{vm.datos[6].datos[0].titulo.substring(0,80)+"..."}} </h4>
+                  </div>
+                  <div ng-if="vm.datos[6].datos.length==0" class="video-block">
+                    <div class="embed-responsive embed-responsive-4by3">
+                      <img src="content/home/youTube.jpg" width="100%"> 
+                    </div>
+                    <h4 class="card-title" style="height: 100px">Titulo del Video </h4>
+                  </div>                    
+                  <ul class="list-inline social-lists animating">
+                    <li>
+                      <a ng-click="vm.goSubView('Vistas_Home.Vistas_Home_Video')">
+                        <i class="fa fa-cog"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <h3 class="heading-large">Enlaces</h3>
+    </div>
+    <div class="col-lg-12 doc-item">
+      <div class="common-doctor">
+        <slick ng-if="vm.datos[7].datos.length>0" class="slider single-item" settings="slickConfig3" focus-on-select="true" current-index="index">
+          <div ng-repeat="a in vm.datos[7].datos" class="col-md-12">
+            <div class="wrimagecard wrimagecard-topimage">
+              <a href="">
+                <div class="wrimagecard-topimage_header" style="background-color: rgba(119, 178, 88, 0.1);height: 100px;">
+                  <center>
+                    <img ng-if="!a.blob" src="galeria/enlace/{{a.imagen}}" class="img-responsive" style="width: 100%;">
+                    <img ng-if="a.blob" src="{{a.blob}}" class="img-responsive" style="width: 100%;">
+                  </center>
+                </div>
+              </a>
+            </div>
+          </div>
+        </slick> 
+        <slick ng-if="vm.datos[7].datos.length==0" ng-if="vm.slickConfig" class="slider single-item" settings="slickConfig3" focus-on-select="true" current-index="index">
+          <div ng-repeat="a in [1,2,3,4,5,6,7,8,9]" class="col-md-12">
+            <div class="wrimagecard wrimagecard-topimage">
+              <a href="">
+                <div class="wrimagecard-topimage_header" style="background-color: rgba(119, 178, 88, 0.1);height: 100px;">
+                  <center>
+                    <img src="content/home/200x200.png" class="img-responsive" style="width: 100%;">
+                  </center>
+                </div>
+              </a>
+            </div>
+          </div>
+        </slick>         
+        <ul class="list-inline social-lists animating">
+          <li>
+            <a ng-click="vm.goSubView('Vistas_Home.Vistas_Home_Enlaces')">
+              <i class="fa fa-cog"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="section-01 col-md-12" ng-if="vm.config">
+
+<div class="col-md-12">
+
+  <div class="col-md-6" ng-if="vm.datos[0].config">
+    <div class="row">
+      <rt-widget-header title="Slider"></rt-widget-header> 
+      <slick ng-if="vm.slickConfig" class="slider single-item" focus-on-select="true" current-index="index">
+        <div ng-repeat="a in vm.datos[0].datos" class="col-lg-12 doc-item">
+          <div class="common-doctor" ng-click="vm.ver(a.id,0)">
+              <img ng-if="a.blob" src="{{a.blob}}" class="img-fluid" alt="photo" width="100%" style="height: 300px">
+              <img ng-if="!a.blob" src="galeria/slide/{{a.imagen}}" class="img-fluid" alt="photo" width="100%" style="height: 300px">
+              <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.1)">
+                <h3>{{a.titulo}}</h3>
+                <p>{{a.descripcion}}</p>
+              </div> 
+          </div>
+        </div>
+      </slick>
+    </div>
+   <!-- <div class="row" ng-show="vm.state==undefined"> -->     
+  </div>
+
+
+<!--   <style>
+      div.slide {
+          border: 1px solid #ccc;
+      }
+
+      div.slide:hover {
+          border: 1px solid #777;
+      }
+
+      div.slide img {
+          width: 100%;
+          height: auto;
+      }
+
+      div.descslide {
+          padding: 15px;
+          text-align: center;
+      }
+      .responsive {
+          padding: 0 6px;
+          float: left;
+          width: 24.99999%;
+      }
+
+      @media only screen and (max-width: 700px) {
+          .responsive {
+              width: 49.99999%;
+              margin: 6px 0;
+          }
+      }
+
+      @media only screen and (max-width: 500px) {
+          .responsive {
+              width: 100%;
+          }
+      }
+
+      .clearfix:after {
+          content: "";
+          display: table;
+          clear: both;
+      }
+  </style> -->
+
+<!--   <div class="col-md-6" ng-if="vm.datos[0].config">
+    <div class="row">
+      <rt-widget-header title="Slider"></rt-widget-header>
+      <div class="col-md-12">
+        <div class="responsive" ng-repeat="a in vm.datos[0].datos" >
+          <div class="slide">
+            <a ng-click="vm.ver(a.id,0)" href="">
+              <img ng-if="a.blob" src="{{a.blob}}"  alt="Trolltunga Norway" width="300" height="200">
+              <img ng-if="!a.blob" src="galeria/slide/{{a.imagen}}" alt="Trolltunga Norway" width="300" height="200">
+            </a>
+            <div class="descslide">
+              <h3>{{a.titulo}}</h3>
+              <p>{{a.descripcion}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div> -->
+
+
+
+
+  <div class="col-md-6" ng-if="vm.datos[1].config" style="background: #e2e2e2;">
+    <div class="row">
+    <rt-widget-header title="Noticias"></rt-widget-header> 
+      <div class="col-md-12">
+          <div class="col-md-12" >
+            <form id="site-search"  class="ng-pristine ng-valid example col-md-12">
+              <button type="submit"><i class="fa fa-search"></i></button>
+              <input type="text" ng-model="vm.texto" placeholder="Type here for search..." name="search">
+            </form>
+          </div>
+          <div class="col-md-12 tableBody"  style="height: 535px; overflow: auto;">
+            <table class="table table-bordered">
+              <thead>
+                  <th>Nro.</th>
+                  <th>Título</th>
+                  <th>Descripción</th>
+                  <th>Fecha</th>
+              </thead>
+              <tbody>
+                <tr ng-repeat="a in vm.datos[1].datos | filter:vm.texto" class="hover" ng-class="{'tr-selected':vm.idSelected==a.id}" ng-click="vm.ver(a.id,1)" >
+                    <td>{{$index+1}}</td>
+                    <td>{{a.titulo.substring(0,20)+"..."}}</td>
+                    <td>{{a.descripcion.substring(0,40)+"..."}}</td>
+                    <td>{{a.fecha|date:'dd/MM/yyyy'}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>    
+  </div>
+
+  <div class="col-md-6" ng-if="vm.datos[2].config" style="background: #e2e2e2;">
+    <div class="row">
+      <rt-widget-header title="Publicaciones"></rt-widget-header> 
+      <div class="col-md-12">
+        <div class="col-md-12" >
+          <form id="site-search"  class="ng-pristine ng-valid example col-md-12">
+            <button type="submit"><i class="fa fa-search"></i></button>
+            <input type="text" ng-model="vm.texto" placeholder="Type here for search..." name="search">
+          </form>
+        </div>
+        <div class="col-md-12 tableBody"  style="height: 535px; overflow: auto;">
+          <table class="table table-bordered">
+            <thead>
+                <th>Nro.</th>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="a in vm.datos[2].datos | filter:vm.texto" class="hover" ng-class="{'tr-selected':vm.idSelected==a.id}" ng-click="vm.ver(a.id,2)" >
+                  <td>{{$index+1}}</td>
+                  <td>{{a.titulo.substring(0,20)+"..."}}</td>
+                  <td>{{a.descripcion.substring(0,40)+"..."}}</td>
+                  <td>{{a.fecha|date:'dd/MM/yyyy'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6" ng-if="vm.datos[3].config" style="background: #e2e2e2;">
+    <div class="row">
+      <rt-widget-header title="Decanos"></rt-widget-header> 
+      <div class="col-md-12">
+        <div class="col-md-12" >
+          <form id="site-search"  class="ng-pristine ng-valid example col-md-12">
+            <button type="submit"><i class="fa fa-search"></i></button>
+            <input type="text" ng-model="vm.texto" placeholder="Type here for search..." name="search">
+          </form>
+        </div>
+        <div class="col-md-12 tableBody"  style="height: 535px; overflow: auto;">
+          <table class="table table-bordered">
+            <thead>
+                <th>Nro.</th>
+                <th>Decano</th>
+                <th>Título de discurso</th>
+                <th>Mandato</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="a in vm.datos[3].datos | filter:vm.texto" class="hover" ng-class="{'tr-selected':vm.idSelected==a.id}" ng-click="vm.ver(a.id,3)" >
+                  <td>{{$index+1}}</td>
+                  <td>{{a.decano}}</td>
+                  <td>{{a.descripcion.substring(0,20)+"..."}}</td>
+                  <td>{{a.mandato}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6" ng-if="vm.datos[4].config" style="background: #e2e2e2;">
+    <div class="row">
+      <rt-widget-header title="Decanos"></rt-widget-header> 
+      <div class="col-md-12">
+        <div class="col-md-12" >
+          <form id="site-search"  class="ng-pristine ng-valid example col-md-12">
+            <button type="submit"><i class="fa fa-search"></i></button>
+            <input type="text" ng-model="vm.texto" placeholder="Type here for search..." name="search">
+          </form>
+        </div>
+        <div class="col-md-12 tableBody"  style="height: 535px; overflow: auto;">
+          <table class="table table-bordered">
+            <thead>
+                <th>Nro.</th>
+                <th>Tipo</th>
+                <th>Título</th>
+                <th>fecha</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="a in vm.datos[4].datos | filter:vm.texto" class="hover" ng-class="{'tr-selected':vm.idSelected==a.id}" ng-click="vm.ver(a.id,4)" >
+                  <td>{{$index+1}}</td>
+                  <td>{{a.header}}</td>
+                  <td>{{a.titulo.substring(0,40)+"..."}}</td>
+                  <td>{{a.fecha|date:'dd/MM/yyyy'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6" ng-if="vm.datos[5].config">
+    <div class="row box-shadow">
+      <rt-widget-header title="Personajes"></rt-widget-header> 
+      <div class="col-md-12" >
+        <form id="site-search"  class="ng-pristine ng-valid example col-md-12">
+          <button type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" ng-keyup="vm.filter(vm.texto)" ng-model="vm.texto" placeholder="Type here for search..." name="search">
+        </form>
+      </div>      
+      <div class="col-md-12 configBody" style="height: 458px; overflow: auto;">
+        <div class="col-md-4" ng-repeat="a in vm.items |slice:vm.pager.startIndex:vm.pager.endIndex">
+          <div class="gallery">
+            <a  href="" ng-click="vm.ver(a.id,5)">
+              <img ng-if="!a.blob" src="galeria/portal/{{a.imagen}}" alt="Trolltunga Norway">
+              <img ng-if="a.blob" src="{{a.blob}}" alt="Trolltunga Norway">
+            </a>
+            <div class="desc">{{a.descripcion}}</div>
+          </div>
+        </div>
+      </div>
+      <center>
+        <rt-pagination datos="vm.items.length" size="6" pagination="vm.pager" ></rt-pagination>
+      </center>
+    </div>
+  </div>
+  <div class="col-md-6" ng-if="vm.datos[6].config">
+    <div class="row box-shadow">
+      <rt-widget-header title="Videos"></rt-widget-header> 
+      <div class="col-md-12" >
+        <form id="site-search"  class="ng-pristine ng-valid example col-md-12">
+          <button type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" ng-keyup="vm.filter2(vm.texto)" ng-model="vm.texto" placeholder="Type here for search..." name="search">
+        </form>
+      </div>     
+      <div class="col-md-12 configBody" style="height: 458px; overflow: auto;">
+        <div class="col-md-4" ng-repeat="a in vm.items |slice:vm.pager.startIndex:vm.pager.endIndex">
+          <div class="gallery">
+            <a  href="" ng-click="vm.ver(a.id,6)">
+              <img src="https://i.ytimg.com/vi/{{a.video.split('=')[1].substring(0,11)}}/hqdefault.jpg" width="100%">
+            </a>
+            <div class="desc">{{a.titulo.substring(0,40)+"..."}}</div>
+          </div>
+        </div>
+      </div>
+      <center>
+        <rt-pagination datos="vm.items.length" size="6" pagination="vm.pager" ></rt-pagination>
+      </center>
+    </div>
+  </div>
+
+  <div class="col-md-6" ng-if="vm.datos[7].config">
+    <div class="row box-shadow">
+      <rt-widget-header title="Enlaces"></rt-widget-header>      
+      <div class="col-md-12 configBody" style="height: 520px; overflow: auto;">
+        <div class="col-md-6" ng-repeat="a in vm.items |slice:vm.pager.startIndex:vm.pager.endIndex">
+          <div class="polaroid">
+            <img ng-if="a.blob" src="{{a.blob}}" alt="Norway" style="width:100%" height="150px;" ng-click="vm.ver(a.id,7)">
+            <img  ng-if="!a.blob" src="galeria/enlace/{{a.imagen}}" alt="Norway" style="width:100%" height="150px;" ng-click="vm.ver(a.id,7)">
+          </div>
+        </div>
+      </div>
+      <center>
+        <rt-pagination datos="vm.items.length" size="6" pagination="vm.pager" ></rt-pagination>
+      </center>
+    </div>
+  </div>
+
+    <div ui-view></div>
+  </div>
+</section>
+
+
+
+
+<style>
+div.polaroid {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 15px;
+}
+
+</style>
+    <style>
+      .gallery {
+          margin: 5px;
+          border: 1px solid #ccc;
+          height: 200px;
+      }
+
+      div.gallery:hover {
+          border: 1px solid #777;
+      }
+
+      div.gallery img {
+          width: 100%;
+          height: 130px;
+          /*height: auto;*/
+      }
+
+      div.desc {
+          padding: 15px;
+          text-align: center;
+      }
+    </style>

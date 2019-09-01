@@ -1,0 +1,157 @@
+
+<style>
+  #login input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+  }
+  #login button {
+      background-color: #637c8a;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+  }
+  #login button:hover {
+      opacity: 0.8;
+  }
+  #login .imgcontainer {
+      text-align: center;
+      margin: 24px 0 12px 0;
+      position: relative;
+  }
+  #login img.avatar {
+      width: 30%;
+      height: 30%;
+
+      border-radius: 50%;
+  }
+  #login span.psw {
+      float: right;
+      padding-top: 16px;
+  }
+
+  @-webkit-keyframes animatezoom {
+      from {-webkit-transform: scale(0)} 
+      to {-webkit-transform: scale(1)}
+  }
+      
+  @keyframes animatezoom {
+      from {transform: scale(0)} 
+      to {transform: scale(1)}
+  }
+  @media screen and (max-width: 300px) {
+      #Login span.psw {
+         display: block;
+         float: none;
+      }
+  }
+</style>
+
+<div class="container" id="login">
+  <form class="col-md-6 col-md-offset-3 box-shadow">
+    <div class="imgcontainer">
+      <img src="http://wfarm2.dataknet.com/static/resources/icons/set108/b5cdab07.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="col-md-12">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required ng-model="vm.admin.user">
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required ng-model="vm.admin.password">
+        
+      <button type="submit" ng-click="vm.iniciar()">Login</button>
+    </div>
+  </form>  
+</div>
+
+<!-- 
+<style>
+  #formulario input[type=text], input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+  }
+
+  #formulario input[type=text]:focus, input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+  }
+
+  #formulario button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+  }
+
+  #formulario button:hover {
+      opacity:1;
+  }
+
+
+  #formulario .signupbtn {
+    float: left;
+    width: 100%;
+  }
+
+  #formulario hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+  }
+   
+
+  @media screen and (max-width: 300px) {
+      #formulario .cancelbtn, #formulario .signupbtn {
+         width: 100%;
+      }
+  }
+</style>
+<div class="container" id="formulario">
+  <form class="col-md-6 col-md-offset-3">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+
+      <div class="clearfix">
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+  </form>
+</div> -->
+<!-- <div class="col-md-12" style="position: absolute; top: 0; left: 0">
+    <div class="col-md-6" style="cursor: pointer;" ng-click="vm.changeView(false)">
+        <div>
+            <rt-widget-header title="Login"></rt-widget-header>                           
+        </div>
+    </div>
+    <div class="col-md-6" style="cursor: pointer;" ng-click="vm.changeView(true)">
+        <div>
+          <rt-widget-header title="Formulario"></rt-widget-header>  
+        </div>
+        
+    </div>
+</div>
+<div>
+  
+</div> -->

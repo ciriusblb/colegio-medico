@@ -1,0 +1,322 @@
+
+<div id="eventos_controles">
+	<a  ng-click="vm.selectControl(1)" ng-hide="vm.service.seleccionados[0]"  class="col-md-3 btn blue-bottom button-cole" ng-class="{'blue-bottom-active':vm.service.controles.opcion==1}">
+	    <span class="glyphicon glyphicon-plus"></span>
+	    <span>Nuevo</span>
+	</a> 
+	<a ng-hide="vm.service.seleccionados[0]" class="col-md-3 btn blue-bottom button-cole" ng-class="{'blue-bottom-active':vm.service.controles.opcion==0}" ng-click="vm.selectControl(0)">
+	    <span class="glyphicon glyphicon-pencil"></span>
+	    <span>Editar</span>
+	</a> 
+
+	<a  ng-click="vm.eliminar()" class="col-md-3 btn blue-bottom button-cole">
+	    <span class="glyphicon glyphicon-trash"></span>
+	    <span>Eliminar</span>
+	</a> 
+</div>
+<div class="col-md-12" >
+	<form ng-submit="vm.guardar(formEvento.$valid)" id="formEvento" cc-validation-form name="formEvento" novalidate>
+	    <div class="row">
+	      <div class="col-25">
+	        <label for="tipo">Tipo</label>
+	      </div>
+	      <div class="col-75">
+	        <input type="text" id="tipo" name="tipo" ng-model="vm.service.evento.tipo" required ng-disabled="vm.service.activate"  autocomplete="off" >
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-25">
+	        <label for="title">Titulo Evento</label>
+	      </div>
+	      <div class="col-75">
+	        <input type="text" id="title" name="title" ng-model="vm.service.evento.title" required ng-disabled="vm.service.activate"  autocomplete="off" >
+	      </div>
+	    </div>
+	 	<div class="row">
+	      <div class="col-25">
+	        <label for="descripcion">Descripción</label>
+	      </div>
+	      <div class="col-75">
+	      	<textarea name="descripcion" ng-model="vm.service.evento.descripcion" id="descripcion" ng-disabled="vm.service.activate"  style="height:100px"></textarea>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-25">
+	        <label for="lugar">Lugar</label>
+	      </div>
+	      <div class="col-75">
+	        <input type="text" id="lugar" name="lugar" ng-model="vm.service.evento.lugar"  required ng-disabled="vm.service.activate" autocomplete="off" >
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-25">
+	        <label for="dirigido">Dirigido a</label>
+	      </div>
+	      <div class="col-75">
+	        <input type="text" id="dirigido" name="dirigido" ng-model="vm.service.evento.dirigido" required ng-disabled="vm.service.activate" autocomplete="off" >
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-25">
+	        <label for="inputFechaPublicacion">Fecha</label>
+	      </div>
+	      <div class="col-75">
+	        <div class="input-group">
+	            <input type="text"  id="inputFechaPublicacion" uib-datepicker-popup="{{vm.format}}" is-open="vm.status.start" ng-disabled="vm.service.activate" ng-model="vm.service.evento.fecha" autocomplete="off" required>
+	            <span class="input-group-btn">
+	              <a class="btn btn-default" type="button ng" ng-click="vm.open('start')" ng-disabled="vm.service.activate" ><i class="glyphicon glyphicon-calendar" style="padding: 4px;border-radius: 0"></i></a>
+	            </span>
+	        </div>
+	      </div>
+	    </div>
+		<div class="row">
+			<div ng-if="!vm.service.showUpload">
+				<div class="col-md-7 col-sm-7">
+					<div class="col-md-12" style="margin-bottom: 10px">
+						<center style="border-bottom: 1px dashed #37454d"><label for="dirigido" >Imagen</label></center>
+                    </div>
+                    <div class="col-md-12" >
+                    	<div class="img-new" ng-if="vm.service.evento.imagenes.length>0">
+                    		<slick class="slider"  settings="vm.slickConfig"  dots="true" ng-if="vm.service.slickConfigLoaded" >
+						        <div ng-repeat="i in vm.service.evento.imagenes" >
+						           	<img src="galeria/eventos/{{i.imagen}}" ng-if="i.imagen && !i.blob">
+					            	<img src="{{i.blob}}" ng-if="i.blob">
+						        </div>
+						    </slick>
+                    	</div>  	
+                    </div>
+                </div>	
+				<div class="col-md-5 col-sm-5">
+					<div class="col-md-12" style="margin-bottom: 10px">
+						<center style="border-bottom: 1px dashed #37454d"><label for="dirigido" >Archivos</label></center>
+                    </div>
+                    <div class="controls col-md-12">
+                    	<div ng-if="!vm.service.evento.pdf.url && !vm.service.evento.doc.url" class="nodata1"><p>No hay Archivos</p></div>
+						<div class="" id="no-more-tables">
+							<table class="table table-bordered" >
+							  	<thead>
+							    	<tr>
+							      		<th ng-repeat="file in [vm.service.evento.pdf,vm.service.evento.doc] track by $index" ng-if="file.url">
+							      			<center>
+							      				<a href="archivos/eventos/{{file.url}}" download>
+							      				<i  class="fa  fa-file-pdf-o" ng-if="file.tipo=='pdf' "></i>
+							      				<i class="fa fa-file-word-o" ng-if="file.tipo=='doc' "></i>
+							      			</a>
+							      			</center>
+							      			
+							      		</th>
+							    	</tr>
+							  	</thead>
+							  	<tbody>
+							    	<tr>
+							      		<td ng-repeat="file in [vm.service.evento.pdf,vm.service.evento.doc] track by $index" ng-if="file.url" data-title="{{file.tipo}}" >
+							      			<span>{{file.nombre}}</span>
+							      		</td>
+							    	</tr>
+							  	</tbody>
+							</table>	
+						</div> 
+                    </div>	
+				</div>	
+			</div>
+				<div class="col-md-12" ng-if="vm.service.showUpload">
+					  	<ul class="nav nav-tabs" role="tablist">
+						    <li role="presentation" class="active"><a  data-target="#imagenes" aria-controls="imagenes" role="tab" data-toggle="tab">Imagenes ({{vm.files.length}})</a></li>
+						    <li role="presentation"><a  data-target="#archivos" aria-controls="archivos" role="tab" data-toggle="tab">Archivos</a></li>
+					  	</ul>
+					  	<fieldset class="tab-content" ng-disabled="vm.service.activate" ng-class="{'disabled':vm.service.activate}">
+						    <div role="tabpanel" class="tab-pane  active" id="imagenes">
+								<div class="col-md-2 col-xs-12 col-sm-2">
+		                          	<div class="img-new icono" >
+		                          		<div  style="height: 100%;width: 100%;position: relative;" >
+		                          			<rt-file-upload  archivo="vm.files" visible="false" option-tipo="icono" min-height="500" min-width="300"></rt-file-upload>
+		                          		</div>
+		                          		
+			                        </div>
+		                        </div>	
+								<div class="col-md-10 col-xs-12 col-sm-10"  id="newImagen">
+									<div class="body-list" style="height: 150px; overflow: auto;">
+			                        	<table class="table" > 
+					                        <thead> 
+					                            <tr> 
+				                            	 	<th>Imagen</th> 
+					                                <th>Nombre</th> 
+					                                <th>Tamaño</th> 
+					                                <th>Acción</th>
+					                            </tr> 
+					                        </thead> 
+					                        <tbody> 
+					                            <tr  ng-repeat="file in vm.files" data-title="{{vm.options[0]}}">
+					                            	<td class="img">
+					                            		<img src="{{file.blob}}" ng-if="file.blob">
+					                            		<img src="galeria/eventos/{{file.imagen}}" ng-if="!file.blob">
+					                            	</td>
+					                                <td class="name">{{file.imagen.name || 'indefinido'}}</td>
+					                                <td class="size">{{(file.imagen.size / 1024 |number:0 )|| 'indefinido'}} KB</td>
+					                                <td class="name">
+					                                	<a class="btn btn-danger" ng-click="vm.borrar(vm.files,$index)" style="width: 40px;"><em class="fa fa-trash"></em></a>
+					                                </td>
+					                            </tr>
+					                        </tbody> 
+					                    </table>										
+									</div>
+	
+                        		</div>
+						    </div>
+						 
+						    <div role="tabpanel" class="tab-pane " id="archivos">
+						    	<div class="col-md-12 nopadding">
+						    		<div class="col-md-2">
+			                          <label for="word" >Word</label>
+			                        </div>
+			                        <div class="col-md-10">
+			                        	<doc-upload tipo="doc" resultado="vm.archivo_doc"></doc-upload>
+			                        </div>
+						    	</div>
+						    	<div class="col-md-12 nopadding">
+						    		<div class="col-md-2">
+			                          <label for="pdf" >Pdf</label>
+			                        </div>
+			                        <div class="col-md-10">
+			                        	<doc-upload tipo="pdf" resultado="vm.archivo_pdf"></doc-upload>
+			                        </div>
+					    			
+						    	</div>
+						    </div>
+					  	</fieldset>
+				</div>
+		</div>
+		<div class="col-md-12" ng-if="vm.service.controles.status">
+			   	<center>
+                    <div class="row ">
+                        <button type="submit" value="Submit" ng-click="vm.registrar()" class="btn blue-bottom button-4 buttonshadow">
+                            <i class="fa fa-check" aria-hidden="true"></i><span >Guardar</span>
+                        </button> 
+                        <button ng-click="vm.cancelar(vm.newColegiado)" type="button" ng-click="vm.cancelar()" class="btn blue-bottom button-4 buttonshadow">
+                            <i class="fa fa-times" aria-hidden="true"></i><span >Cancelar</span>
+                        </button>
+                    </div>
+                </center>
+<!-- 			<div class="form-evento-control" >
+                <button class="btn btn-primary" type="submit" value="Submit"  >Guardar</button>
+                <button class="btn btn-warning" type="button" ng-click="vm.cancelar()" >Cancel</button>
+          	</div> -->
+		</div>
+  	</form>	
+</div>
+
+
+<style type="text/css">
+	#formEvento input[type=text], select, textarea {
+	    width: 100%;
+	    padding: 6px;
+	    border: 1px solid #637c8a;
+	    resize: vertical;
+	}
+	#formEvento label {
+	    padding: 6px;
+	    display: inline-block;
+	}
+
+	.col-25 {
+	    float: left;
+	    width: 25%;
+	}
+
+	.col-75 {
+	    float: left;
+	    width: 75%;
+	}
+	.row:after {
+	    content: "";
+	    display: table;
+	    clear: both;
+	}
+	@media (max-width: 600px) {
+	    .col-25, .col-75, input[type=submit] {
+	        width: 100%;
+	        margin-top: 0;
+	    }
+	}
+</style>
+<style type="text/css">
+		.img-new{
+	  height: 130px;
+	  width: 100%;
+	  position: relative;
+	  	}
+
+	.img-new .slider img{
+	  height: 130px;
+	  width: 100%;
+	}
+	.fa-file-pdf-o, .fa-file-word-o{
+		font-size: 20px	
+	}
+	.fa-file-pdf-o{
+		color:#c30505;
+	}
+	.fa-file-word-o{
+		color: #066ca7;
+	}
+</style>
+
+
+
+<style type="text/css">
+	@media only screen and (max-width: 800px) {
+	#no-more-tables table, 
+	#no-more-tables thead, 
+	#no-more-tables tbody, 
+	#no-more-tables th, 
+	#no-more-tables td, 
+	#no-more-tables tr { 
+		display: block; 
+	}
+	#no-more-tables thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+ 
+	#no-more-tables tr { border: 1px solid #ccc; }
+ 
+	#no-more-tables td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+		white-space: normal;
+		text-align:left;
+	}
+ 
+	#no-more-tables td:before { 
+		position: absolute;
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align:left;
+		font-weight: bold;
+	}
+	#no-more-tables td:before { content: attr(data-title); }
+}
+</style>
+
+  <style type="text/css">
+						    	  
+		#newImagen{
+			font-size: x-small;
+		    height: 150px;
+	    	overflow: auto;
+		}
+		#newImagen .img{
+		    width: 30%;
+	    	position: relative;
+		}
+		#newImagen img{
+			height: 60px;
+	    	width: 100%;
+		}
+</style>

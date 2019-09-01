@@ -1,0 +1,17 @@
+<ul ng-if="pagination.pages.length" class="pagination">
+    <li ng-class="{disabled:pagination.currentPage === 1}">
+        <a ng-click="setPage(1)"><span class="glyphicon glyphicon-backward"></span></a>
+    </li>
+    <li ng-class="{disabled:page.currentPage === 1}">
+        <a ng-click="setPage(pagination.currentPage - 1)"><span class="glyphicon glyphicon-triangle-left"></span></a>
+    </li>
+    <li ng-repeat="page in pagination.pages" ng-class="{active:pagination.currentPage === page}">
+        <a ng-click="setPage(page)">{{page}}</a>
+    </li>                
+    <li ng-class="{disabled:pagination.currentPage === page.totalPages}">
+        <a ng-click="setPage(pagination.currentPage + 1)"><span class="glyphicon glyphicon-triangle-right"></span></a>
+    </li>
+    <li ng-class="{disabled:pagination.currentPage === page.totalPages}">
+        <a ng-click="setPage(pagination.totalPages)"><span class="glyphicon glyphicon-forward"></span></a>
+    </li>
+</ul>

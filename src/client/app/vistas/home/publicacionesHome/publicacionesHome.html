@@ -1,0 +1,88 @@
+<div class="col-md-6">
+  <div class="row box-shadow">
+    <rt-widget-header title="Descripcion"></rt-widget-header>
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <rt-form-button 
+          buttons="vm.buttons"
+          updates="vm.updates"
+          new-button="vm.nuevo()" 
+          edit-button="vm.editar()" 
+          delete-button="vm.eliminar()">
+        </rt-form-button>
+      </div> 
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-4">
+        <fieldset ng-disabled="vm.updates.disabled">
+          <rt-image-file publicacion="vm.publicacion" state="vm.state" alto="height200px" tabla="'h_publicacion'" carpeta="'PUBLICACION'"></rt-image-file>
+        </fieldset>
+      </div>
+      <div class="col-md-8 configBody" style="height: 480px; overflow: auto;">
+        <form class="formulario" name="formulario">
+          <fieldset ng-disabled="vm.updates.disabled">
+            <rt-form-file dato="vm.publicacion"></rt-form-file>
+          </fieldset>
+        </form>
+      </div>         
+    </div>
+    <div class="col-md-12">
+      <div class="panel-body">
+        <center>
+            <button type="submit" ng-click="vm.guardar(formulario.$valid)" class="blue-bottom button-4"><i class="fa fa-check" aria-hidden="true"></i><span >Guardar</span></button> 
+            <a ng-click="vm.cancelar(vm.publicacion)" class="blue-bottom button-4"><i class="fa fa-times" aria-hidden="true"></i>Cancelar</a>
+        </center>  
+      </div>  
+    </div>
+  </div>
+</div>
+<!-- <section class="section-01">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="container dentro">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="heading-large">Noticias</h3>
+          </div>
+          <div class="border-primary col-md-12 text-center cards">
+            <div class="card-body" style="margin-bottom: 30px;">
+              <div class="" ng-repeat="a in vm.publicaciones|slice:vm.pager.startIndex:vm.pager.endIndex">
+                <div class=" col-md-12 doc-item">
+                  <div class="common-doctor">
+                    <div class="">
+                    <div class="col-md-12">
+                      <h5 class="card-title" style="margin-top: 25px;"><strong>{{a.titulo}}</strong></h5>
+                    </div> 
+                    <div class="col-md-4 offset-md-1 mx-3 my-3">
+                      <div class="view hm-white-slight">
+                        <img src="{{a.imagen}}" width="100%">
+                        <a>
+                          <div class="mask"></div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-md-7 text-left ml-3 mt-3 card-text">
+                      <article>{{a.descripcion.substring(0,300)+"..."}}</article>
+                      <br>
+                      <p class="col-md-6">by<a><strong>{{a.fuente}}</strong></a></p>
+                      <p class="col-md-6">{{a.fecha | date:"MMMM,d,y"}}</p>
+                      <button ui-sref="noticias({cod:'{{a.id}}'})" class="btn kyoka button-4 buttonshadow" ><i class="fa fa-magic mr-1"></i> Ver mas</button>
+                      <hr>
+                    </div>  
+                    </div>  
+                    <rt-settings edit="vm.ver(a.id)" delete="vm.eliminar(a.id)"></rt-settings>                  
+                  </div>
+                </div>
+              </div>
+              <center>
+                <rt-pagination datos="vm.publicaciones.length" size="3" pagination="vm.pager" ></rt-pagination>
+              </center>      
+            </div> 
+            <button id="kyoka" type="button" ui-sref="noticias({cod:1})" class="btn button-4-border buttonshadow">Ver mas Noticias <i class="fa fa-magic ml-1"></i></button>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->

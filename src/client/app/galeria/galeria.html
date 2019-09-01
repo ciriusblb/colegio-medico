@@ -1,0 +1,115 @@
+<div class="col-md-12">
+  <div class="col-md-6">
+    <div class="row box-shadow">
+      <rt-widget-header title="Gaelría"></rt-widget-header>
+      <div class="col-md-12 configBody" style="height: 520px; overflow: auto;">
+        <div class="column" ng-repeat="a in vm.datos|slice:vm.pager.startIndex:vm.pager.endIndex" ng-click="vm.ver(a.id)">
+          <img ng-if="!a.blob" src="galeria/galeria/{{a.imagen}}" class="polaroid" style="width: 100%; height: 100%;">
+          <img ng-if="a.blob" src="{{a.blob}}" class="polaroid" style="width: 100%; height: 100%;">
+        </div>
+      </div>
+      <center>
+        <rt-pagination datos="vm.datos.length" size="6" pagination="vm.pager" ></rt-pagination>
+      </center>
+    </div>
+    
+    
+    <style>
+.polaroid {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /*margin-bottom: 15px;*/
+}
+
+        /* The grid: Four equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 33%;
+            height: 200px;
+            padding: 10px;
+        }
+
+        /* Style the images inside the grid */
+        .column img {
+            opacity: 0.8; 
+            cursor: pointer; 
+        }
+
+        .column img:hover {
+            opacity: 1;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* The expanding image container */
+        .container {
+            position: relative;
+            display: none;
+        }
+
+        /* Expanding image text */
+        #imgtext {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            color: white;
+            font-size: 20px;
+        }
+
+        /* Closable button inside the expanded image */
+        .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: white;
+            font-size: 35px;
+            cursor: pointer;
+        }
+    </style>
+
+  </div>
+  <div class="col-md-6">
+    <div class="row box-shadow">
+      <rt-widget-header title="Descripcion"></rt-widget-header>
+        <div class="col-md-12">
+          <div class="col-md-12">
+            <rt-form-button 
+              buttons="vm.buttons"
+              updates="vm.updates"
+              new-button="vm.nuevo()" 
+              edit-button="vm.editar()" 
+              delete-button="vm.eliminar()">
+            </rt-form-button>
+          </div> 
+        </div>
+        <div class="col-md-12" style="height: 480px;">
+          <div class="col-md-8 col-md-offset-2">
+            <fieldset ng-disabled="vm.updates.disabled">
+              <rt-image-file publicacion="vm.publicacion" state="vm.state" alto="height350px" carpeta="'GALERIA'"></rt-image-file>
+            </fieldset>
+          </div>
+          <!-- <div class="col-md-6 configBody" style="height: 480px; overflow: auto;">
+            <form class="formulario" name="formulario">
+              <fieldset ng-disabled="vm.updates.disabled">
+                <rt-form-file dato="vm.publicacion"></rt-form-file>
+              </fieldset>
+            </form>
+          </div> -->         
+        </div>
+     
+      <div class="col-md-12">
+        <div class="panel-body">
+          <center>
+              <button type="submit" ng-click="vm.guardar(formulario.$valid)" class="blue-bottom button-4"><i class="fa fa-check" aria-hidden="true"></i><span >Guardar</span></button> 
+              <a ng-click="vm.cancelar(vm.publicacion)" class="blue-bottom button-4"><i class="fa fa-times" aria-hidden="true"></i>Cancelar</a>
+          </center>  
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>

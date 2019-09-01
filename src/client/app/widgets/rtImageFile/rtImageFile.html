@@ -1,0 +1,60 @@
+<div class="col-md-12">
+  <div class="cards row">
+    <div ng-show="state==false"  class="icon-picture" style="display: flex;">
+      <img src="content/home/subir.png" style="margin: auto;" class="{{alto}}">
+    </div>
+      <input id="files" name="file" ng-model="image" type="file" data-file>
+    <div ng-show="state==true"  class="thumb">
+      <img ng-if="!publicacion.blob" src="galeria/{{carpeta}}/{{publicacion.imagen}}" class="img-fluid {{alto}}" alt="photo" width="100%"/>
+      <img ng-if="publicacion.blob" src="{{publicacion.blob}}" class="img-fluid {{alto}}" alt="photo" width="100%"/>
+    </div>
+    <div ng-show="state==undefined" class="thumb">
+      <div ng-show="cropper.croppedImage!=null">
+        <img ng-src="{{cropper.croppedImage}}" class="img-fluid {{alto}}" width="100%"/></div>
+      </div>
+  </div>
+</div>
+
+
+
+<div class="col-md-12 " >
+            <center class="" ng-if="publicacion.archivo!=undefined">
+            <div ng-if="archivo" class="file-preview">
+               <div class="file-preview-status text-center text-success"></div>
+               <div class="file-preview-thumbnails">
+                  <div class="file-preview-frame" >
+                    <div class="file-preview-other" >
+                      <h2><i class="glyphicon glyphicon-file"></i></h2>
+                      <a href="archivos/{{carpeta}}/{{publicacion.archivo}}" target="_blanck">{{publicacion.nombre_archivo}}</a>
+                    </div>
+                  </div>
+               </div>
+               <div class="clearfix"></div>
+            </div>
+             <span class="btn blue-bottom  button-4 btn-file">
+                Archivo  <input multiple=true data-file ng-model="application" id="filesPdf" type="file"><i class="fa fa-file" aria-hidden="true"></i>
+            </span> 
+          </center>
+</div>
+
+
+
+
+
+
+
+
+        <style type="text/css">
+          .height250px{
+            height: 250px;
+          }
+          .height200px{
+            height: 200px;
+          }
+          .height300px{
+            height: 300px;
+          }
+          .height350px{
+            height: 350px;
+          }
+        </style>

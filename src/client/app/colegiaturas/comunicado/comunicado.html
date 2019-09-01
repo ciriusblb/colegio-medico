@@ -1,0 +1,33 @@
+ <form name="comunicado">
+                    <div class="col-md-12 configBody" style="height: 540px; overflow: auto;">
+                      <div class="col-md-12 bordering" >
+                        <div class="col-md-12 row" style="margin-top: 5px;">
+                            <center class="col-md-2"><img style="" src="content/home/logo.png" width="50px" height="50px"></center>
+                              <center class="col-md-8"><strong>COLEGIO MEDICO DEL PERU</strong>
+                              <p>CONSEJO REGIONAL</p></center>
+                            <center class="col-md-2"><img style="" src="content/home/logo.png" width="50px" height="50px"></center>
+                        </div>
+                        <label class="w3-text-blue" for=""><b>Header</b></label>
+                        <input type="text" class="w3-input input-messaje" ng-model="vm.comunicado.header" placeholder="CONVOCATORIA 001-2018-CMP/CN" style="font-weight: bold;" name="header" required>
+                        <label class="w3-text-blue" for=""><b>Titular</b></label>
+                        <input type="text" class="w3-input input-messaje" ng-model="vm.comunicado.titulo" placeholder="Titular del Comunicado..." name="titulo" required>
+                        <label class="w3-text-blue" for=""><b>Comunicado</b></label>
+                        <textarea  class="w3-input" auto-resize ng-model="vm.comunicado.descripcion" name="descripcion"  placeholder="Descripcion del Comunicado..." rows="10" required></textarea>
+                        <br>
+                        <div class="col-md-12">
+                          <span>{{vm.fecha}}</span>
+                        </div>
+                        <div class="col-md-12">
+                          <span>COLEGIO MÉDICO DEL PERÚ</span>
+                        </div>
+                        <div class="col-md-12">&nbsp</div>
+                      </div>     
+                    </div>
+                    <div class="col-md-12">
+                        <center>
+                            <div class="panel-body">
+                            <button type="submit" ng-click="vm.enviar(comunicado.$valid)" class="blue-bottom button-4 buttonshadow"><i class="fa fa-check" aria-hidden="true"></i><span >Enviar</span></button> 
+                            <a  ng-click="vm.noEnviar(vm.comunicado)" class="blue-bottom button-4 buttonshadow"><i class="fa fa-times" aria-hidden="true"></i>Cancelar</a></div>
+                        </center>                        
+                    </div>
+                </form> 

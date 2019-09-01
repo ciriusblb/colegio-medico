@@ -1,0 +1,73 @@
+<table class="table table-responsive upload-doc" > 
+    <tbody> 
+        <tr >
+            <td>
+                <div class="upload-field" ng-class="{'active_file' : resultado.url.name || resultado.url }"><!-- ng-class="{'pdf':  tipo=='pdf' ,'doc': tipo=='pdf'}" -->
+                    <input type="file" id="uploadFileInput" ng-if="!resultado.url"/>
+                    <label class="upload-label" ng-if="!resultado.url" style="color: mediumseagreen;
+                    padding: 15px 0px 0px 0px;
+                    position: absolute;text-align: center;" >Vacio</label>
+                    <i class="fa  fa-file-pdf-o active_pdf"  ng-if="resultado.url && tipo=='pdf' "></i>
+                    <i class="fa fa-file-word-o active_word" ng-if="resultado.url && tipo=='doc' "></i>
+                </div>
+            </td>
+            <td style="font-size: smaller;">
+                <p>{{resultado.url.name || resultado.nombre }}</p></td>
+            <td ng-if="resultado.url">
+                <a class="btn btn-danger" ng-click="eliminar()" style="width: 40px;"><em class="fa fa-trash"></em></a>
+            </td>
+        </tr>
+    </tbody> 
+</table>   
+
+
+
+<style type="text/css">
+.upload_archvivos{
+    width: 100%;
+}
+.upload-doc tbody>tr>td{border: none;}
+.upload_archivos ~div{
+    display: flex;
+}
+.upload-controls{
+    display: inline-flex;
+}
+.pdf{
+    background-color: red;
+}
+.upload-field{
+	position: relative;
+	height: 45px;
+	width: 45px;
+    border:1px solid gainsboro;
+}
+
+.active_file{
+    border:none;
+}
+.active_pdf{
+    background-color: transparent;
+    color: red;
+}
+.active_word{
+    background-color: transparent;
+    color: blue;
+}
+.upload-field i{
+	position: absolute;
+    font-size: -webkit-xxx-large;
+    opacity: 0.5;
+}
+input[type=file]:hover ,.upload-label:hover{
+     cursor: pointer;
+}
+#uploadFileInput{
+ 	position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 100;
+}
+
+</style>

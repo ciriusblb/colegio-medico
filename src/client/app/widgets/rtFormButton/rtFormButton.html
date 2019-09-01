@@ -1,0 +1,17 @@
+<a ng-show="buttons.new" ng-click="newButton()" class="col-md-3 blue-bottom button-cole" ng-class="{'blue-bottom-active':!updates.disabled}">
+    <span class="glyphicon glyphicon-plus"></span>
+    <span>Nuevo <input type="checkbox" ng-model="updates.disabled"></span>
+</a> 
+<a ng-show="buttons.edit" ng-click="editButton()" class="col-md-3 blue-bottom button-cole" ng-class="{'blue-bottom-active':!updates.disabled}">
+    <span class="glyphicon glyphicon-pencil"></span>
+    <span>Editar<input type="checkbox" ng-model="updates.disabled"></span>
+</a> 
+<a ng-show="buttons.delete" ng-click="deleteButton()" class="col-md-3 blue-bottom button-cole">
+    <span class="glyphicon glyphicon-trash"></span>
+    <span>Eliminar</span>
+</a> 
+<style type="text/css">
+    .button-cole input[type=checkbox]{
+        opacity: 0
+    }
+</style>

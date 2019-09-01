@@ -1,0 +1,121 @@
+<div class="col-lg-12">
+	<div class="widget wblack">
+	 	<div class="col-md-2 col-sm-12 box-shadow" style="min-height: 640px;">
+ 			<div class="widget-head row" style="margin-bottom: 6px;height: 45px;border-right: 1px solid; border-left: 1px solid;">
+    	 		<div class="">
+    	 			<div class="page-title pull-center">Calendario</div>
+    	 		</div>
+			</div>
+	        <div class="col-md-12 row body-years body-list" >
+	        	<table class="table table-condensed " id="year">
+	                <thead>
+	                    <th>
+							<label >
+								<span>Años</span>
+							</label>
+	                    </th>
+	                </thead>
+	                <tbody >
+	                    <tr ng-repeat="option in vm.years" >
+	                        <td>                                  
+	                         <div class="ui-radio ui-radio-event" >
+								<label for="{{option.name}}">
+									<input type="radio" id="{{option.name}}" ng-model="vm.opYears" value="{{option.value}}" ng-disabled="!vm.servicio.habFiltro" ng-click="vm.filtrar(1)" ><span>{{option.name}}</span>
+								</label>
+							</div>
+	                        </td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </div>
+	        <div class="col-md-12 row">
+	            <table class="table table-condensed">
+                    <thead>
+                        <th>
+		    				<div class="ui-checkbox ui-checkbox-event" style="display: flex;">
+								<label>
+									<input type="checkbox" id="todos" name="todos" ng-model="vm.opTodos"  ng-disabled="!vm.servicio.habFiltro" ng-click="vm.filtroTodos(vm.opTodos)"  ><span></span>
+								</label>
+								<p style="font-weight: bold;">Meses</p>
+							</div>
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="option in vm.meses">
+                            <td>                                  
+                             <div class="ui-radio ui-radio-event" >
+								<label for="{{option.name}}">
+									<input type="radio" id="{{option.name}}" ng-model="vm.opMeses" value="{{option.value}}" ng-disabled="!vm.servicio.habFiltro || vm.opTodos"  ng-click="vm.filtrar(1)" ><span></span>{{option.name}}
+								</label>
+							</div>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td ng-show="!vm.servicio.habFiltro ||vm.opTodos">Filtro Inválido</td>
+                        </tr>
+                    </tbody>
+                </table>	        	
+	        </div>
+	 	</div>    	
+    	<div class="col-md-10 col-sm-12 col-xs-12" id="content_eventos" style="padding: 0;"> 
+    		<div class="col-md-6 col-sm-12" style="min-height: 640px;">
+	           	<div class="widget-head row" style="margin-bottom: 6px;height: 45px;border-right: 1px solid; border-left: 1px solid;">
+	    	 		<div class="col-md-12">
+	    	 			<div class="page-title pull-center">Eventos</div>
+	    	 		</div>
+				</div>
+				<div class="row " style="background: #e2e2e2;" >
+					<form id="site-search"  class="ng-pristine ng-valid example col-md-12">
+						<button type="submit" ng-click="vm.buscar(1)"><i class="fa fa-search"></i></button>
+						<input type="text" placeholder="Type here for search..." style="width: 80%" ng-keydown="vm.keyPress($event,results)" ng-model="vm.search" name="search">
+						<span ng-if="vm.resultSearch">{{vm.resultSearch}}</span>
+						<span ng-if="!vm.resultSearch">&nbsp</span>
+					</form>
+					<br>
+	    			<div class=" col-md-12 body-list" style="height: 525px; overflow: auto;">
+	    				<table class="table table-responsive tabla-lista-eventos" >
+								<thead>
+									<th>
+										<div class="ui-checkbox ui-checkbox-danger" >
+											<label>
+												<input type="checkbox" ng-if="vm.lista[0]" ng-checked="vm.todos" ng-model="vm.todos" ng-disabled="vm.servicio.controles.status" ng-click="vm.seleccionar(vm.lista,vm.todos,'all')" ><span></span>
+											</label>
+										</div>
+									</th>
+									<th>Items</th>
+									<th>Fecha</th>
+									<th>Nombre</th>
+								</thead>
+								<tbody >
+									<div class="nodata" ng-if="vm.lista.length==0"><label>No hay datos</label></div>
+									<tr  ng-repeat="evento in vm.lista" ng-class="{'activate-green': vm.servicio.evento.id == evento.id}">
+										<td class="col-md-1">
+											<div class="ui-checkbox ui-checkbox-event ml5">
+												<label><input type="checkbox" ng-checked="evento.select" ng-model="evento.select" ng-disabled="vm.todos || vm.servicio.controles.status" ng-click="vm.seleccionar([evento],evento.select)"><span></span>
+												</label>
+											</div>
+										</td>
+										<td class="col-md-1 cursor" ng-click="vm.select(evento)">{{$index+1 | numberFixedLen:3}}</td>
+										<td class="col-md-1 cursor" ng-click="vm.select(evento)">{{evento.fecha| date: 'dd/MM/yyyy'}}</td>
+										<td class="cursor" ng-click="vm.select(evento)">{{evento.title}}</td>
+									</tr>
+								</tbody>
+						</table>
+	    			</div>
+		    	</div>	
+    		</div>
+    		<div class="col-md-6 col-sm-12 box-shadow" style=" min-height: 640px; ">
+          		<div class="widget-head row" style="margin-bottom: 6px;height: 45px;border-right: 1px solid; border-left: 1px solid;">
+	    	 		<div class="col-md-12">
+	    	 			<div class="page-title pull-center">Descripcion</div>
+	    	 		</div>
+				</div>
+	    		<div class="col-md-12 row">
+		    		<div ui-view></div>
+		    	</div>	
+    		</div>	
+    	</div>
+    	
+    </div>
+</div>
+

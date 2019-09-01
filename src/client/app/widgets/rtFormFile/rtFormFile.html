@@ -1,0 +1,75 @@
+﻿
+  <div ng-if="formulario.header!=undefined">
+    <label class="w3-text-blue" for="header"><b>Header</b></label>
+    <input type="text" class="w3-input w3-border" name="header" id="header" capitalize-letter ng-model="dato.header" placeholder="Header" required>
+  </div>
+    <div ng-if="formulario.decano!=undefined">
+    <label class="w3-text-blue" for="decano"><b>Decano</b></label>
+    <input type="text" class="w3-input w3-border" name="decano" id="decano" capitalize-letter ng-model="dato.decano" placeholder="Decano" required>
+  </div>
+  <div ng-if="formulario.titulo!=undefined">
+    <label class="w3-text-blue" for="titulo"><b>Título</b></label>
+    <input type="text" class="w3-input w3-border" name="titulo" id="titulo" capitalize-letter ng-model="dato.titulo" placeholder="Título" required>
+  </div>
+  <div ng-if="formulario.descripcion!=undefined">
+    <label class="w3-text-blue" for="descripcion"><b>Descripción</b></label>
+    <textarea name="descripcion" auto-resize capitalize-letter style="resize: none;" class="w3-input w3-border" placeholder="Descripción" ng-model="dato.descripcion" id="descripcion" rows="6" required></textarea>
+  </div>
+  <div ng-if="formulario.fuente!=undefined">
+    <label class="w3-text-blue" for="fuente"><B>Fuente</B> </label>
+    <input type="text" class="w3-input w3-border" name="fuente" id="fuente" ng-model="dato.fuente" placeholder="Fuente" required>
+  </div>
+  <div ng-if="formulario.url!=undefined">
+    <label class="w3-text-blue" for="url"><b>Url</b> </label>
+    <input type="text" class="w3-input w3-border" name="url" id="url" ng-model="dato.url" placeholder=" http://www.mydomain.com/" required>
+  </div>
+  <div ng-if="formulario.contenido!=undefined">
+    <label class="w3-text-blue" for="contenido"><b>Contenido</b></label>
+    <textarea class="w3-input w3-border" name="contenido" placeholder="Contenido" capitalize-letter ng-model="dato.contenido" id="contenido" rows="7" required></textarea>
+  </div>
+  <div ng-if="formulario.video!=undefined">
+    <label class="w3-text-blue" for="video"><b>Video</b></label>
+    <input type="text" class="w3-input w3-border" name="video" id="video" ng-model="dato.video" placeholder="https://www.youtube.com/" required>
+        <div class="col-md-8 col-md-offset-2"  ng-if="dato.video!=''">
+          <br>
+          <div class="embed-responsive embed-responsive-4by3">
+            <ng-youtube-embed 
+                video="dato.video" 
+                autoplay="true"
+                color="white"
+                disablekb="true"
+                end="20">
+            </ng-youtube-embed>
+          </div>
+        </div>
+  </div>
+  <div ng-if="formulario.mandato!=undefined" class="row">
+    <div class="col-md-6">
+      <label class="w3-text-blue"><b>Inicio Decanatura</b></label>
+      <div class="input-group">
+        <input type="text"  class="w3-input w3-border" name="inicio" uib-datepicker-popup="yyyy" 
+          ng-model="dato.mandato.inicio" is-open="status.start" 
+          datepicker-options="dateOptions" autocomplete="off" required/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default calendar-button" ng-click="showDatepicker('start')"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="w3-text-blue"><b>Fin Decanatura</b></label>
+      <div class="input-group">
+        <input type="text"  class="w3-input w3-border" name="fin" uib-datepicker-popup="yyyy" 
+          ng-model="dato.mandato.fin" is-open="status.end" 
+          datepicker-options="dateOptions" autocomplete="off" required />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default calendar-button" ng-click="showDatepicker('end')"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+<style type="text/css">
+  .calendar-button{
+    border-radius: 0px;
+    padding: 8.5px 12px;
+  }
+</style>

@@ -1,0 +1,308 @@
+    <div class="col-md-12">
+        <div class="col-md-2">
+            <div class="row box-shadow">
+                <rt-widget-header title="Filtros"></rt-widget-header>
+                <div class="col-md-12" >
+                    <table class="table table-condensed " id="year">
+                        <thead>
+                            <th>
+                                <div class="ui-timesbox ui-timesbox-danger" style="display: flex;">
+                                    <label>
+                                        <input ng-model="vm.selected[0].selected"  ng-click="vm.reset(vm.tipos,0,'tipo_Colegiado')"  ng-disabled="vm.selected[0].selected || vm.updates.idSelected || !vm.updates.disabled" type="checkbox" id="todos" name="todos"><span>Tipo de Colegiado</span>
+                                    </label>
+                                </div>
+                            </th>
+                        </thead>
+                        <tbody >
+                            <tr ng-repeat="a in vm.tipos">
+                                <td>                                  
+                                 <div class="ui-radio ui-checkbox-event" >
+                                    <label>
+                                        <input type="radio" name="{{a.tipo_Colegiado}}" ng-disabled="vm.updates.idSelected || !vm.updates.disabled" ng-checked="a.selected" ng-click="vm.filtro(vm.tipos,$index,0,'tipo_Colegiado',a.tipo_Colegiado)" ><span>{{a.tipo_Colegiado}}</span>
+                                    </label>
+                                </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12" >
+                    <table class="table table-condensed " id="year">
+                        <thead>
+                            <th>
+                                <div class="ui-timesbox ui-timesbox-danger" style="display: flex;">
+                                    <label>
+                                        <input ng-model="vm.selected[1].selected"  ng-click="vm.reset(vm.estados,1,'estado')"  ng-disabled="vm.selected[1].selected || vm.updates.idSelected || !vm.updates.disabled" type="checkbox" id="todos" name="todos"><span>Estado</span>
+                                    </label>
+                                </div>
+                            </th>
+                        </thead>
+                        <tbody >
+                            <tr ng-repeat="a in vm.estados">
+                                <td>                                  
+                                 <div class="ui-radio ui-checkbox-event" >
+                                    <label>
+                                        <input type="radio" name="{{a.estado}}" ng-disabled="vm.updates.idSelected || !vm.updates.disabled" ng-checked="a.selected" ng-click="vm.filtro(vm.estados,$index,1,'estado',a.estado)"><span>{{a.estado}}</span>
+                                    </label>
+                                </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12" style="height: 170px;">
+                    <table class="table table-condensed " id="year" >
+                        <thead>
+                            <th>
+                                <span>Tipo de Documento</span>
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="a in vm.tofilter[1]">
+                                <td>                                  
+                                 <div class="ui-checkbox ui-checkbox-event" style="display: flex;">
+                                    <label>
+                                        <input type="checkbox" name="{{a.tipo_Documento}}" ng-disabled="vm.updates.idSelected || !vm.updates.disabled" ng-checked="!a.selected" ng-click="vm.filtro2($index,1)"><span>{{a.tipo_Documento}}</span>
+                                    </label>
+                                </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12" >
+                    <table class="table-condensed">
+                       <thead>
+                            <th>
+                                <span>Especialidad</span>
+                            </th>
+                        </thead> 
+                    </table>
+                        
+                </div>
+                <div class="col-md-12 configBody" style="height: 200px; overflow: auto;">
+                    <table class="table table-condensed " id="year">
+                        <tbody >
+                            <tr ng-repeat="a in vm.tofilter[0]">
+                                <td>                                  
+                                 <div class="ui-checkbox ui-checkbox-event" style="display: flex;">
+                                    <label>
+                                        <input type="checkbox" name="{{a.especialidad}}" ng-disabled="vm.updates.idSelected || !vm.updates.disabled"  ng-checked="!a.selected" ng-click="vm.filtro2($index,0)"><span>{{a.especialidad}}</span>
+                                    </label>
+                                </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" >
+            <div class="row" style="background: #e2e2e2;" >
+                <rt-widget-header title="Colegiados"></rt-widget-header>
+                    <div class="col-md-12 configBody" style="height: 610px; overflow: auto;">
+                        <div class=" panel-body" style="border-bottom: 2px solid #637c8a">
+                            <div class="input-group">
+                              <input type="text" class="form-control" ng-model="vm.word">
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar <span class="caret"></span></button>
+                              </div> 
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <th ng-if="vm.updates.message">
+                                    <div class="ui-checkbox ui-checkbox-cole-active" >
+                                        <label>
+                                            <input type="checkbox" ng-click="vm.cambiarTodos(!vm.all)" ng-checked="vm.all" ><span></span>
+                                        </label>
+                                    </div>
+                                </th>
+                                <th>Nro.</th>
+                                <th>Habilitado</th>
+                                <th>Especialidad</th>
+                                <th>Nombres y Apellidos</th>
+                                <th>Correo Electrónico</th>
+                                <th>Documento</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="a in vm.items" ng-class="{'tr-selected':vm.updates.idSelected==a.id}" ng-click="vm.ver(a.id)">
+                                    <td ng-if="vm.updates.message">
+                                        <div class="ui-checkbox ui-checkbox-cole">
+                                            <label><input type="checkbox" ng-checked="a.comunicar" ng-click="vm.change(a.id)"><span></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>{{vm.pager.startIndex + $index+1}}</td>
+                                    <td>
+                                        <div ng-if="a.estado=='HABILITADO'" >Si</div>
+                                        <div ng-if="a.estado=='NO HABILITADO'" >No</div>
+                                    </td>
+                                    <td>{{a.especialidad}}</td>
+                                    <td>{{a.nombre}} {{a.ap_Paterno}}</td>
+                                    <td> <a href="">{{a.email}}</a></td>
+                                    <td>{{a.tipo_Documento}}. {{a.documento}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row box-shadow">
+                    <div class="col-md-6" style="cursor: pointer;" ng-click="vm.changeView(false)">
+                        <div class="row">
+                            <rt-widget-header title="Formulario"></rt-widget-header>                          
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="cursor: pointer;" ng-click="vm.changeView(true)">
+                        <div class="row">
+                          <rt-widget-header title="Comunicado"></rt-widget-header>  
+                        </div>  
+                    </div>
+                    <div ui-view></div>
+                    <!-- <form ng-if="!vm.updates.message"  class="col-md-12" name="Formulario">         
+                        <div class="col-md-12" >
+                            <rt-form-button 
+                                buttons="vm.buttons"
+                                updates="vm.updates"
+                                new-button="vm.nuevo()" 
+                                edit-button="vm.editar()" 
+                                message-button="vm.comunicar()"  
+                                back-button="vm.volver()" 
+                                delete-button="vm.eliminar()" >
+                            </rt-form-button>
+                        </div>
+                        <br>
+                        <div style="height: 520px;">
+                            <fieldset class="col-md-6">
+                                <label class="w3-text-blue" for="nombre"><b>Nombre(s)</b></label>
+                                <input type="text" class="w3-input w3-border" name="nombre" lyrics-only capitalize-letter ng-model="vm.newColegiado.nombre" ng-disabled="vm.updates.disabled" required>
+                                <label class="w3-text-blue" for="apellido_paterno"><b>Apellido Paterno</b></label>
+                                <input type="text" class="w3-input w3-border" name="apellido_paterno" lyrics-only capitalize-letter ng-model="vm.newColegiado.ap_Paterno" ng-disabled="vm.updates.disabled" required>
+                                <label class="w3-text-blue" for="apellido_materno"><b>Apellido Materno</b></label>
+                                <input type="text" class="w3-input w3-border" name="apellido_materno" lyrics-only capitalize-letter ng-model="vm.newColegiado.ap_Materno" ng-disabled="vm.updates.disabled" required>
+                                <label class="w3-text-blue" for="tipo_colegiado"><b>Tipo de Colegiado</b></label>
+                                <select class="w3-select w3-border" name="tipo_colegiado" ng-model="vm.newColegiado.tipo_Colegiado" ng-disabled="vm.updates.disabled" required>
+                                  <option>ORDINARIO</option>
+                                  <option>TEMPORAL</option>
+                                </select>
+                            </fieldset>
+                            <fieldset class="col-md-6">
+                                <label class="w3-text-blue" for="tipo_documento"><b>Tipo de Documento</b></label>
+                                <select class="w3-select w3-border" ng-model="vm.newColegiado.tipo_Documento" name="tipo_documento" ng-disabled="vm.updates.disabled" required>
+                                    <option>RUC</option>
+                                    <option>PASS</option>
+                                    <option>DNI</option>
+                                    <option>Reg. CIP</option>
+                                    <option>C.E.</option>
+                                </select>
+                                <label class="w3-text-blue" for="documento"><b>Documento</b></label>
+                                <input type="text" class="w3-input w3-border" name="documento" numbers-only ng-model="vm.newColegiado.documento" ng-disabled="vm.updates.disabled" required>
+                                <label class="w3-text-blue" for="especialidad"><b>Especialidad</b></label>
+                                <select class="w3-select w3-border" ng-model="vm.newColegiado.especialidad" name="especialidad" ng-disabled="vm.updates.disabled" required>
+                                    <option>Alergología</option>
+                                    <option>Anestesiología</option>
+                                    <option>Cardiología</option>
+                                    <option>Cirugía</option>
+                                    <option>Dermatología</option>
+                                    <option>Dismorfología</option>
+                                    <option>Endocrinología</option>
+                                    <option>Epidemiología</option>
+                                    <option>Fisiología</option>
+                                    <option>Gastroenterología</option>
+                                </select>
+                                    <label class="w3-text-blue" for="estado"><b>Estado</b></label>
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="HABILITADO" name="estado" checked ng-model="vm.newColegiado.estado" ng-disabled="vm.updates.disabled" required>
+                                        HABILITADO
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="NO HABILITADO" name="estado" ng-model="vm.newColegiado.estado" ng-disabled="vm.updates.disabled">
+                                        NO HABILITADO
+                                      </label>
+                                    </div>
+                            </fieldset>
+                            <br>
+                            <fieldset class="col-md-6">
+                                <label class="w3-text-blue" for="direccion"><b>Dirección</b></label>
+                                <input type="text" class="w3-input w3-border" ng-model="vm.newColegiado.direccion" name="direccion" ng-disabled="vm.updates.disabled" required>
+                                <label class="w3-text-blue" for="email"><b>Email</b></label>
+                                <input type="email" class="w3-input w3-border" ng-model="vm.newColegiado.email" name="email" ng-disabled="vm.updates.disabled" required>
+                            </fieldset>
+                            <fieldset class="col-md-6">
+                                <label class="w3-text-blue" for="celular"><b>Celular</b></label>
+                                <input type="text" class="w3-input w3-border" name="celular" numbers-only ng-model="vm.newColegiado.celular" ng-disabled="vm.updates.disabled" required> 
+                                
+                                <label class="w3-text-blue" for="fecha_nacimiento"><b>Fecha de Nacimiento</b></label>
+                                <div class="input-group">
+                                    <input type="text" name="fecha_nacimiento" uib-datepicker-popup="MMM dd,yyyy" required="required" ng-model="vm.newColegiado.fecha_Nac" is-open="vm.open" class="w3-input w3-border" ng-disabled="vm.updates.disabled" required> 
+                                    <span class="input-group-btn" ng-disabled="vm.updates.disabled">
+                                      <button class="btn btn-default" style="border-radius: 0px; padding: 8.5px 12px;" type="button ng" ng-click="vm.showDatepicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <br>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-12">
+                            <center>
+                                <div class="row panel-body">
+                                    <button type="submit" ng-click="vm.registrar(Formulario.$valid)" ng-disabled="!Formulario.$valid" class="blue-bottom button-4 buttonshadow">
+                                        <i class="fa fa-check" aria-hidden="true"></i><span >Registrar</span>
+                                    </button> 
+                                    <a ng-click="vm.cancelar(vm.newColegiado)" class="blue-bottom button-4 buttonshadow">
+                                        <i class="fa fa-times" aria-hidden="true"></i><span >Cancelar</span>
+                                    </a>
+                                </div>
+                            </center>
+                        </div>
+                    </form> -->
+                <!-- <form ng-if="vm.updates.message" name="comunicado">
+                    <div class="col-md-12 configBody" style="height: 540px; overflow: auto;">
+                      <div class="col-md-12 bordering" >
+                        <div class="col-md-12 row" style="margin-top: 5px;">
+                            <center class="col-md-2"><img style="" src="content/home/logo.png" width="50px" height="50px"></center>
+                              <center class="col-md-8"><strong>COLEGIO MEDICO DEL PERU</strong>
+                              <p>CONSEJO REGIONAL</p></center>
+                            <center class="col-md-2"><img style="" src="content/home/logo.png" width="50px" height="50px"></center>
+                        </div>
+                        <label class="w3-text-blue" for=""><b>Header</b></label>
+                        <input type="text" class="w3-input input-messaje" ng-model="vm.comunicado.header" placeholder="CONVOCATORIA 001-2018-CMP/CN" style="font-weight: bold;" name="header" required>
+                        <label class="w3-text-blue" for=""><b>Titular</b></label>
+                        <input type="text" class="w3-input input-messaje" ng-model="vm.comunicado.titulo" placeholder="Titular del Comunicado..." name="titulo" required>
+                        <label class="w3-text-blue" for=""><b>Comunicado</b></label>
+                        <textarea  class="w3-input" auto-resize ng-model="vm.comunicado.descripcion" name="descripcion"  placeholder="Descripcion del Comunicado..." rows="10" required></textarea>
+                        <br>
+                        <div class="col-md-12">
+                          <span>{{vm.comunicado.fecha}}</span>
+                        </div>
+                        <div class="col-md-12">
+                          <span>COLEGIO MÉDICO DEL PERÚ</span>
+                        </div>
+                        <div class="col-md-12">&nbsp</div>
+                      </div>     
+                    </div>
+                    <div class="col-md-12">
+                        <center>
+                            <div class="panel-body">
+                            <button type="submit" ng-click="vm.enviar(comunicado.$valid)" class="blue-bottom button-4 buttonshadow"><i class="fa fa-check" aria-hidden="true"></i><span >Enviar</span></button> 
+                            <a  ng-click="vm.noEnviar(vm.comunicado)" class="blue-bottom button-4 buttonshadow"><i class="fa fa-times" aria-hidden="true"></i>Cancelar</a></div>
+                        </center>                        
+                    </div>
+                </form> --> 
+            </div>               
+        </div> 
+    </div>   
+
+    <style type="text/css">
+        .input-messaje{
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .bordering {
+            border:2px solid #637c8a; margin-bottom:10px;
+        }
+    </style>

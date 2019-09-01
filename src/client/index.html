@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html ng-app="app.main">
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Colegio Médico</title>
+
+	<link rel="stylesheet" href="content/css/bootstrap.min.css">
+	<link rel="stylesheet" href="content/css/font-awesome.min.css">		
+  <link rel="stylesheet" href="content/css/toastr.min.css">  
+  <link rel="stylesheet" href="content/css/sweetalert2.css">   
+  <link rel="stylesheet" href="content/css/fileinput.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+  <link rel="stylesheet" type="text/css" href="content/css/styles.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.material.min.css">
+
+</head>				
+<body>
+	<div ng-include=" 'app/layout/shell.html' " ></div>
+	<!--scripts -->
+ 	<script src="scripts/jquery-2.1.4.min.js"></script>
+ 	<script src="scripts/angular.min.js"></script>
+ 	<script src="scripts/angular-ui-router.min.js"></script>
+ 	<script src="scripts/angular-resource.min.js"></script>
+ 	<script src="scripts/bootstrap.min.js"></script>
+  <script src="scripts/angular-messages.js"></script>
+
+ 	<script src="scripts/toastr.min.js"></script>
+  <script src="scripts/angular-sanitize.js"></script>
+  <script src="scripts/slick.min.js"></script>
+  <script src="scripts/angular-slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="scripts/ui-bootstrap-tpls-0.14.3.min.js"></script>
+  <script src="scripts/angular-img-cropper.js"></script>
+  <script src="scripts/ng-cookies.js"></script>
+  <script src="scripts/fileinput.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.9/angular-locale_es-es.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ng-youtube-embed@1.7.11/build/ng-youtube-embed.min.js"></script>
+
+
+ 	<!--Modulo principal -->
+ 	<script src="app/app.module.js"></script>
+
+  <script src="app/blocks/logger/logger.module.js"></script>
+  <script src="app/blocks/logger/logger.js"></script>
+  <script src="app/blocks/exception/exception.module.js"></script>
+  <script src="app/blocks/exception/exception-handler.provider.js"></script>
+  <script src="app/blocks/exception/exception.js"></script>
+ 	<script src="app/blocks/router/router.module.js"></script>
+ 	<script src="app/blocks/router/routehelper.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/dataTables.material.min.js"></script>
+  <script src="scripts/angularJwt.js"></script>
+  
+
+
+ 	<script src="app/core/core.module.js"></script>
+  <script src="app/core/constants.js"></script>
+ 	<script src="app/core/config.js"></script>
+
+  <script src="app/data/dataservice.module.js"></script>
+  <script src="app/data/operaService.js"></script>
+  <script src="app/data/eventos.js"></script>
+  <script src="app/data/operationsService.js"></script>
+  
+
+ 	<script src="app/widgets/widgets.module.js"></script>
+  <script src="app/widgets/file.js"></script>
+
+  <script src="app/widgets/rtPagination/rtPaginationDirective.js"></script>
+  <script src="app/widgets/rtSettings/rtSettingsDirective.js"></script>
+  <script src="app/widgets/rtFormFile/rtFormFile.js"></script>
+  <script src="app/widgets/rtImageFile/rtImageFile.js"></script>
+  <script src="app/widgets/rtFormButton/rtFormButton.js"></script>
+  <script src="app/widgets/rtWidgetHeader/rtWidgetHeader.js"></script>
+
+
+  
+
+  <script src="app/widgets/rtConfigText/rtNumbersOnly.js"></script>
+  <script src="app/widgets/rtConfigText/rtLyricsOnly.js"></script>
+  <script src="app/widgets/rtConfigText/rtCapitalizeLetter.js"></script>
+  <script src="app/widgets/rtConfigText/rtAutoResize.js"></script>
+  <script src="app/widgets/rtConfigText/rtSlickConfig.js"></script>
+  <script src="app/widgets/rtConfigText/rtFormValid.js"></script>
+
+  <script src="app/widgets/widgetDocUpload/widgetDocUpload.js"></script>
+  <script src="app/widgets/widgetFileUpload/widgetFileUpload.js"></script>
+
+
+
+
+
+
+ 	  <script src="app/layout/layout.module.js"></script>
+    <script src="app/layout/sidebar.js"></script>
+    <script src="app/layout/dataservice.js"></script>
+
+
+    <script src="app/sesion/sesion.module.js"></script>
+    <script src="app/sesion/sesion.js"></script>
+    <script src="app/sesion/config.route.js"></script>
+    <script src="app/sesion/dataservice.js"></script>
+
+    <script src="app/vistas/vistas.module.js"></script> 
+    <script src="app/vistas/home/home.module.js"></script>
+    <script src="app/vistas/home/home.js"></script>
+    <script src="app/vistas/home/config.route.js"></script>
+    <script src="app/vistas/home/homeService.js"></script>
+    
+   
+
+    <script src="app/vistas/home/slideHome/slideHome.module.js"></script>
+    <script src="app/vistas/home/slideHome/slideHome.js"></script>
+    <script src="app/vistas/home/slideHome/config.route.js"></script>
+
+    <script src="app/vistas/home/noticiasHome/noticiasHome.module.js"></script>
+    <script src="app/vistas/home/noticiasHome/noticiasHome.js"></script>
+    <script src="app/vistas/home/noticiasHome/config.route.js"></script>
+
+    <script src="app/vistas/home/publicacionesHome/publicacionesHome.module.js"></script>
+    <script src="app/vistas/home/publicacionesHome/publicacionesHome.js"></script>
+    <script src="app/vistas/home/publicacionesHome/config.route.js"></script>
+
+    <script src="app/vistas/home/personajesHome/personajesHome.module.js"></script>
+    <script src="app/vistas/home/personajesHome/personajesHome.js"></script>
+    <script src="app/vistas/home/personajesHome/config.route.js"></script>
+
+    <script src="app/vistas/home/informeHome/informeHome.module.js"></script>
+    <script src="app/vistas/home/informeHome/informeHome.js"></script>
+    <script src="app/vistas/home/informeHome/config.route.js"></script>
+
+    <script src="app/vistas/home/portalHome/portalHome.module.js"></script>
+    <script src="app/vistas/home/portalHome/portalHome.js"></script>
+    <script src="app/vistas/home/portalHome/config.route.js"></script>
+
+    <script src="app/vistas/home/enlacesHome/enlacesHome.module.js"></script>
+    <script src="app/vistas/home/enlacesHome/enlacesHome.js"></script>
+    <script src="app/vistas/home/enlacesHome/config.route.js"></script>
+
+
+    <script src="app/vistas/home/videoHome/videoHome.module.js"></script>
+    <script src="app/vistas/home/videoHome/videoHome.js"></script>
+    <script src="app/vistas/home/videoHome/config.route.js"></script>
+
+    <script src="app/vistas/servicios/servicios.module.js"></script>
+    <script src="app/vistas/servicios/servicios.js"></script>
+    <script src="app/vistas/servicios/config.route.js"></script>
+
+    <script src="app/vistas/servicios/medicos/medicos.module.js"></script>
+    <script src="app/vistas/servicios/medicos/medicosService.js"></script>
+    <script src="app/vistas/servicios/medicos/medicos.js"></script>
+    <script src="app/vistas/servicios/medicos/config.route.js"></script>
+
+    <script src="app/vistas/servicios/nosotros/nosotros.module.js"></script>
+    <script src="app/vistas/servicios/nosotros/nosotrosService.js"></script>
+    <script src="app/vistas/servicios/nosotros/nosotros.js"></script>
+    <script src="app/vistas/servicios/nosotros/config.route.js"></script>
+
+    <script src="app/vistas/servicios/convenios/convenios.module.js"></script>
+    <script src="app/vistas/servicios/convenios/conveniosService.js"></script>
+    <script src="app/vistas/servicios/convenios/convenios.js"></script>
+    <script src="app/vistas/servicios/convenios/config.route.js"></script>
+
+    <script src="app/colegiaturas/colegiaturas.module.js"></script>
+    <script src="app/colegiaturas/dataservice.js"></script>
+    <script src="app/colegiaturas/colegiaturas.js"></script>
+    <script src="app/colegiaturas/config.route.js"></script>
+
+
+    <script src="app/colegiaturas/colegiado/colegiado.module.js"></script>
+    <script src="app/colegiaturas/colegiado/colegiado.js"></script>
+    <script src="app/colegiaturas/colegiado/config.route.js"></script>
+
+    <script src="app/colegiaturas/comunicado/comunicado.module.js"></script>
+    <script src="app/colegiaturas/comunicado/comunicado.js"></script>
+    <script src="app/colegiaturas/comunicado/config.route.js"></script>
+
+    <script src="app/galeria/galeria.module.js"></script>
+    <script src="app/galeria/galeria.js"></script>
+    <script src="app/galeria/config.route.js"></script>
+    <script src="app/galeria/galeriaService.js"></script>
+
+
+
+    <script src="app/eventos/eventos.module.js"></script>
+    <script src="app/eventos/eventos.js"></script>
+    <script src="app/eventos/dataEventos.js"></script>
+    <script src="app/eventos/config.route.js"></script>
+
+    <script src="app/eventos/detalle/detalle.module.js"></script>
+    <script src="app/eventos/detalle/detalle.js"></script>
+    <script src="app/eventos/detalle/config.route.js"></script>
+
+</body>
+</html>

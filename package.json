@@ -1,0 +1,22 @@
+{
+  "name": "Saona-Lodge",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node src/server/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.8.2",
+    "express": "^4.9.3",
+    "express-form-data": "^2.0.1",
+    "fs-extra": "^5.0.0",
+    "google-translate-api": "^2.3.0",
+    "jsonwebtoken": "^8.2.0",
+    "moment": "^2.21.0",
+    "morgan": "^1.1.1",
+    "mysql": "^2.15.0",
+    "nodemailer": "^4.4.0",
+    "nodemailer-juice": "^1.0.0",
+    "serve-favicon": "^2.3.0",
+    "socket.io": "^2.0.4"
+  }
+}

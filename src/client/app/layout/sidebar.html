@@ -1,0 +1,31 @@
+
+    <ul class="list-unstyled components">
+      <li ng-class="vm.isCurrent(r)" ng-repeat="r in navRoutes" id="{{r.settings.nav}}">
+        <a ng-if="!r.children" ui-sref="{{r.name}}" ng-bind-html="r.settings.content">
+        </a>
+        <a  ng-if="r.children" data-toggle="collapse"  data-target="#pageSubmenu" aria-expanded="true"  ng-bind-html="r.settings.content">
+        </a>
+        <ul ng-if="r.children" class="collapse list-unstyled" id="pageSubmenu">
+            <li ng-repeat="d in r.children" ng-if="!d.abstract"><a ng-click="vm.configurando()" ui-sref="{{d.name}}">{{d.settings.content}}</a>
+            </li>
+            <li ng-repeat="d in r.children" ng-if="d.abstract">
+                <a data-toggle="collapse"  data-target="#pageSubSubmenu" aria-expanded="true">{{d.settings.content}}</a>
+                <ul ng-if="d.childrenViews" class="collapse list-unstyled" id="pageSubSubmenu">
+                    <li ng-repeat="m in d.childrenViews" ui-sref="{{m.name}}" ng-bind-html="m.settings.content">
+                    </li>
+                </ul>
+            </li>
+        </ul>
+      </li>
+    </ul>
+
+    <style type="text/css">
+    #sidebar ul ul ul a {
+    padding-left: 60px !important;
+    background: #849ba9;
+    }
+    #sidebar ul li ul li ul li a:hover {
+        color: #37454d;
+        background: #fff;
+    }
+    </style>

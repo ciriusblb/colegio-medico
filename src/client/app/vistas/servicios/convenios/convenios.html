@@ -1,0 +1,139 @@
+<!-- <div class="container">
+  <div class="row box-shadow">
+    <div class="col-lg-12">
+      <div class="col-lg-4">
+        <rt-widget-header title="Archivos"></rt-widget-header>
+        <fieldset ng-disabled="vm.updates.disabled">
+          <rt-image-file publicacion="vm.publicacion" imagen="vm.imagen" state="vm.state" alto="height250px"  archivo="vm.archivo" carpeta="'CONVENIO'"></rt-image-file>
+        </fieldset>
+      </div>
+      <div class="col-lg-8">
+        <rt-widget-header title="Contenido"></rt-widget-header>
+          <div class="row">
+            <rt-form-button 
+              buttons="vm.buttons"
+              updates="vm.updates"
+              new-button="vm.nuevo()" 
+              edit-button="vm.editar()" 
+              delete-button="vm.eliminar()" >
+            </rt-form-button> 
+          </div>
+        <form class="formulario" name="formulario">
+          <fieldset ng-disabled="vm.updates.disabled">
+            <rt-form-file dato="vm.publicacion" paragraph="vm.paragraph" paragraphs="vm.paragraphs"></rt-form-file>
+          </fieldset>
+        </form>
+      </div>    
+    </div>
+        <div class="panel-body">
+        <center>
+            <button type="submit" ng-click="vm.guardar(formulario.$valid)" class="blue-bottom button-4"><i class="fa fa-check" aria-hidden="true"></i><span >Guardar</span></button> 
+            <a ng-click="vm.cancelar(vm.publicacion)" class="blue-bottom button-4"><i class="fa fa-times" aria-hidden="true"></i>Cancelar</a>
+        </center>  
+      </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-12 doc-item" ng-repeat="a in vm.datos">
+      <div class="common-doctor">
+        <div class="panel panel-default" >
+            <div class="panel-heading">
+              <h3 class="panel-title">{{a.titulo}}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-md-4">
+                <img ng-if="a.blob" src="{{a.blob}}" width="100%" style="height: 300px">
+                <img ng-if="!a.blob" src="galeria/convenio/{{a.imagen}}" width="100%" style="height: 300px">
+              </div>
+              <div class="col-md-8">
+                <div ng-repeat="b in a.paragraphs">
+                  <p>{{b.paragraph}}</p>
+                  <br>
+                </div>
+              </div>
+            </div>
+        </div>
+        <rt-settings ver="vm.ver(a.id)"></rt-settings>
+      </div>
+    </div>
+  </div>  
+</div> -->
+
+
+
+<div class="col-md-12">
+  <div class="col-md-6" style="background: #e2e2e2;">
+    <div class="row">
+    <rt-widget-header title="Noticias"></rt-widget-header> 
+      <div class="col-md-12">
+          <div class="col-md-12" >
+            <form id="site-search"  class="ng-pristine ng-valid example col-md-12">
+              <button type="submit"><i class="fa fa-search"></i></button>
+              <input type="text" ng-model="vm.texto" placeholder="Type here for search..." name="search">
+            </form>
+          </div>
+          <div class="col-md-12 tableBody"  style="height: 535px; overflow: auto;">
+            <table class="table table-bordered">
+              <thead>
+                  <th>Nro.</th>
+                  <th>Título</th>
+                  <th>Descripción</th>
+                  <th>archivo</th>
+              </thead>
+              <tbody>
+                <tr ng-repeat="a in vm.datos | filter:vm.texto" class="hover" ng-class="{'tr-selected':vm.idSelected==a.id}" ng-click="vm.ver(a.id)" >
+                    <td>{{$index+1}}</td>
+                    <td>{{a.titulo.substring(0,20)+"..."}}</td>
+                    <td>{{a.descripcion.substring(0,40)+"..."}}</td>
+                    <td>{{a.nombre_archivo}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>    
+  </div>  
+  <div class="col-md-6" >
+  <div class="row box-shadow">
+    <rt-widget-header title="Descripcion"></rt-widget-header>
+      <div class="col-md-12">
+        <div class="col-md-12">
+          <rt-form-button 
+            buttons="vm.buttons"
+            updates="vm.updates"
+            new-button="vm.nuevo()" 
+            edit-button="vm.editar()" 
+            delete-button="vm.eliminar()">
+          </rt-form-button>
+        </div> 
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <fieldset ng-disabled="vm.updates.disabled">
+            <rt-image-file publicacion="vm.publicacion" state="vm.state" alto="height250px"  archivo="vm.archivo" carpeta="'CONVENIO'"></rt-image-file>
+          </fieldset>
+        </div>
+        <div class="col-md-6 configBody" style="height: 480px; overflow: auto;">
+          <form class="formulario" name="formulario">
+            <fieldset ng-disabled="vm.updates.disabled">
+              <rt-form-file dato="vm.publicacion"></rt-form-file>
+            </fieldset>
+          </form>
+        </div>         
+      </div>
+   
+    <div class="col-md-12">
+      <div class="panel-body">
+        <center>
+            <button type="submit" ng-click="vm.guardar(formulario.$valid)" class="blue-bottom button-4"><i class="fa fa-check" aria-hidden="true"></i><span >Guardar</span></button> 
+            <a ng-click="vm.cancelar(vm.publicacion)" class="blue-bottom button-4"><i class="fa fa-times" aria-hidden="true"></i>Cancelar</a>
+        </center>  
+      </div>  
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
